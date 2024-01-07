@@ -1,0 +1,113 @@
+<div class="white_with_back wf-section">
+    <div class="flex_user_acc">
+        <div class="flex_left_acc">
+            <h2 class="sub_heading">Sign-Up</h2>
+            <h1 class="page_headings">Create A Free Account</h1>
+            <div class="w-form">
+
+                <form id="email-form-3" name="email-form-3" data-name="Email Form 3" method="get">
+                    <div class="w-layout-grid grid_contact_acc">
+
+                        <input type="text" class="input_orange no_margin w-input" [(ngModel)]="firstname"
+                            maxlength="256" name="firstname" data-name="Name 2" data-ix="link-hover"
+                            placeholder="Name *" id="firstname">
+
+                        <input type="text" class="input_orange no_margin w-input" [(ngModel)]="lastname" maxlength="256"
+                            name="lastname" data-name="Surname 2" data-ix="link-hover" placeholder="Surname *"
+                            id="lastname">
+
+                        <div class="grid_contact_acc">
+
+                            <div class="message_div" [hidden]="!showNameError">
+                                <div>Please Enter Name</div>
+                            </div>
+
+                        </div>
+
+                        <div class="grid_contact_acc">
+
+                            <div class="message_div" [hidden]="!showSurnameError">
+                                <div>Please Enter Surname</div>
+                            </div>
+
+                        </div>
+
+                        <input type="tel" class="input_orange no_margin w-input" [(ngModel)]="phone" maxlength="256"
+                            name="phone" data-name="Contact Number 2" data-ix="link-hover"
+                            placeholder="Contact Number *" id="phone">
+
+                        <input type="email" class="input_orange no_margin w-input" [(ngModel)]="username"
+                            maxlength="256" name="username" data-name="E Mail 2" data-ix="link-hover"
+                            placeholder="E-Mail *" id="username">
+
+                        <div class="grid_contact_acc">
+
+                            <div class="message_div" [hidden]="!showNumberError">
+                                <div>Please Enter Contact Number</div>
+                            </div>
+
+                        </div>
+
+                        <div class="grid_contact_acc">
+
+                            <div class="message_div" [hidden]="!showUsernameError">
+                                <div>{{errorEmailMessage}}</div>
+                            </div>
+
+                        </div>
+
+                        <input type="password" class="input_orange no_margin w-input" [(ngModel)]="password"
+                            maxlength="256" name="password" data-name="E Mail 2" data-ix="link-hover"
+                            placeholder="Password" id="password">
+
+                        <input type="password" class="input_orange no_margin w-input" [(ngModel)]="cpassword"
+                            maxlength="256" name="cpassword" data-name="E Mail 2" data-ix="link-hover"
+                            placeholder="Confirm Password" id="cpassword">
+
+                        <div class="grid_contact_acc">
+
+                            <div class="message_div" [hidden]="!showPasswordError">
+                                <div>Please Enter Password</div>
+                            </div>
+
+                        </div>
+
+                        <div class="grid_contact_acc">
+
+                            <div class="message_div" [hidden]="!showCPasswordError">
+                                <div>Please Enter Confirm Password</div>
+                            </div>
+
+                        </div>
+
+                        <div class="grid_contact_acc">
+
+                            <div class="message_div" [hidden]="!showPasswordMatchError">
+                                <div>Password Does Not Match</div>
+                            </div>
+
+                        </div>
+
+                        <div class="grid_contact_acc">
+
+                            <div class="message_div" [hidden]="!showPasswordMatchError">
+                                <div>Password Does Not Match</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a (click)="register()" class="nav_link button_veh_main" data-ix="link-hover">Create
+                        Account</a>
+                </form>
+
+            </div>
+        </div>
+        <div class="flex_right_acc">
+            <img src="assets/images/clickty-cars-1.jpg" loading="lazy" alt="" class="ac_image">
+        </div>
+    </div>
+    <div class="flex_body_div"></div>
+</div>

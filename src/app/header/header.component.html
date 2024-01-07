@@ -1,0 +1,202 @@
+<div *ngIf="!router.url.includes('account')" class="mobile_menu wf-section" (@dimBox.done)="animationEnd($event)" [@dimBox]="isDimmed ? 'notDimmed' : 'dimmed'">
+  <div class="top_button_holder">
+    <a routerLink="/login" class="nav_link link_sell" data-ix="link-hover"
+      style="transition: all 0.2s ease 0s;">
+      Buy A Car
+    </a>
+
+    <a (click)="logout()" *ngIf="loginState!==null" class="nav_link link_sell" data-ix="link-hover"
+      style="transition: all 0.2s ease 0s;">
+      Sign Out
+    </a>
+
+    <a (click)="navigatateToLink('SellMyCar')" class="nav_link link_sell" data-ix="link-hover"
+      style="transition: all 0.2s ease 0s;"><span class="plus_span">+
+      </span>Sell My Car</a>
+
+  </div>
+  <div class="nav_panel_mobile">
+    <a (click)="navigatateToLink('home')" class="nav_link_mob" data-ix="link-hover">Home</a>
+    <a (click)="navigatateToLink('listing')" class="nav_link_mob" data-ix="link-hover">Listings</a>
+    <a routerLink="/account/your-vehicles" *ngIf="loginState!==null" class="nav_link_mob" data-ix="link-hover">My
+      Account</a>
+    <a (click)="navigatateToLink('Finance')" class="nav_link_mob" data-ix="link-hover">Finance Calculator</a>
+    <div data-hover="false" data-delay="0" class="nav_link_mob w-dropdown" data-ix="link-hover">
+      <div class="nav_link_drop_mob w-dropdown-toggle" style="padding-bottom: 0;" id="w-dropdown-toggle-0"
+        aria-controls="w-dropdown-list-0" aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0">
+        <div class="w-icon-dropdown-toggle" aria-hidden="true"></div>
+        <div>About Us</div>
+      </div>
+      <nav class="dropdown-list-2 w-dropdown-list" id="w-dropdown-list-0" aria-labelledby="w-dropdown-toggle-0">
+        <a (click)="navigatateToLink('who-we-are')" class="nav_link_mob drop w-dropdown-link" data-ix="link-hover"
+          tabindex="0">Who We
+          Are</a>
+        <a (click)="navigatateToLink('contact-us')" class="nav_link_mob drop w-dropdown-link" data-ix="link-hover"
+          tabindex="0">Contact
+          Us</a>
+      </nav>
+    </div>
+    <a (click)="navigatateToLink('faq')" aria-current="page" class="nav_link_mob" data-ix="link-hover">FAQ</a>
+    <a href="https://www.autoblog.co.za/" target="_blank" class="nav_link_mob" data-ix="link-hover">Blog</a>
+    <a (click)="navigatateToLink('dealership')" class="nav_link_mob" data-ix="link-hover">Dealership Sign Up</a>
+    <a (click)="navigatateToLink('listing')" class="nav_link_mob" data-ix="link-hover">Buy A Car</a>
+    <a href="http://driftza.co.za/" target="_blank" class="nav_link_mob" data-ix="link-hover">Sell My Car</a>
+  </div>
+  <div class="footer_mob">
+    <h1 class="page_headings footer_number">
+      <a href="tel:+27871356082" class="number_link" data-ix="link-hover">087 <span class="orange_span">135
+          6082</span></a>
+    </h1>
+    <a href="mailto:info@e-dealerportal.co.za?subject=Website%20Enquiry" class="footer_email" data-ix="link-hover"
+      style="transition: all 0.2s ease 0s;">info@e-dealerportal.co.za</a>
+  </div>
+  <a (click)="hideMenu()" class="close_mob_menu w-inline-block" data-ix="hide-mobile-menu"
+    style="transition: all 0.6s ease 0s;">
+    <img src="assets/images/hamburger-1.png" loading="lazy" width="50" alt="" class="close_button"
+      data-ix="link-hover"></a>
+</div>
+<div *ngIf="!router.url.includes('account')" class="nav_scroll scoll"
+  style="display: none; height: 0px; transition: height 400ms ease 0s, opacity 400ms ease 0s; opacity: 1;">
+  <a routerLink="navigatateToLink()" routerLinkActive="w--current" class="logo_link mobile w-inline-block"><img
+      src="assets/images/Click-Car-2.png" loading="lazy" alt="" class="image scroll"></a>
+  <div class="nav_wrap">
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav"></div>
+      <a routerLink="/" (click)="cleardata()" routerLinkActive="w--current" [routerLinkActiveOptions]="{exact: true}"
+        class="nav_link" data-ix="link-hover" style="transition: color 0.2s ease 0s;">Home</a>
+    </div>
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav"></div>
+      <a routerLink="/cars" routerLinkActive="w--current" class="nav_link" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">Listings</a>
+    </div>
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav"></div>
+      <a routerLink="/account/your-vehicles" *ngIf="loginState!==null" class="nav_link" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">My Account</a>
+    </div>
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav" style="transition: width 200ms ease 0s; width: 0px;"></div>
+      <a routerLink="/finance-calculator" routerLinkActive="w--current" class="nav_link" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">Finance Calculator</a>
+    </div>
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav" style="transition: width 200ms ease 0s; width: 0px;"></div>
+      <div data-hover="true" data-delay="0" class="nav_link drop w-dropdown" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">
+        <div class="dropdown-toggle w-dropdown-toggle" style="padding-bottom: 0;" id="w-dropdown-toggle-1"
+          aria-controls="w-dropdown-list-1" aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0">
+          <div class="icon w-icon-dropdown-toggle" aria-hidden="true"></div>
+          <div class="drop_font">About Us</div>
+        </div>
+        <nav class="dropdown-list w-dropdown-list" id="w-dropdown-list-1" aria-labelledby="w-dropdown-toggle-1">
+          <a routerLink="/who-we-are" routerLinkActive="w--current" class="drop_link line w-dropdown-link"
+            tabindex="0">Who We Are</a>
+          <a routerLink="/contact-us" routerLinkActive="w--current" class="drop_link w-dropdown-link"
+            tabindex="0">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav"></div>
+      <a routerLink="/faq" routerLinkActive="w--current" aria-current="page" class="nav_link" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">FAQ</a>
+    </div>
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav"></div>
+      <a href="https://www.autoblog.co.za/" target="_blank" class="nav_link" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">Blog</a>
+    </div>
+  </div>
+
+  <a routerLink="/cars" class="nav_link link_sell small" data-ix="link-hover"
+    style="transition: all 0.2s ease 0s;">
+    BUY A CAR
+  </a>
+
+
+
+  <a href="http://driftza.co.za/" class="nav_link link_sell small" data-ix="link-hover"
+    style="transition: all 0.2s ease 0s;"><span class="plus_span">+ </span>Sell My Car
+  </a>
+
+  <a (click)="showMenu()" target="_blank" class="hamburger_menu w-inline-block" data-ix="show-mobile-menu">
+    <img src="assets/images/hamburger.png" loading="lazy" alt="" class="hamburger" data-ix="link-hover">
+  </a>
+
+</div>
+
+<div class="nav_section_sub" data-ix="show-mobile-nav">
+  <a *ngIf="!router.url.includes('account')" (click)="showMenu()" class="hamburger_menu w-inline-block" data-ix="show-mobile-menu">
+    <img src="assets/images/hamburger.png" loading="lazy" alt="" class="hamburger" data-ix="link-hover">
+  </a>
+  <a routerLink="/" routerLinkActive="w--current" class="logo_link w-inline-block" data-ix="link-hover">
+    <img src="assets/images/Click-Car-2.png" loading="lazy" alt="Click Cars Logo" class="image">
+  </a>
+  <div *ngIf="router.url.includes('account')" class="nav_wrap">
+    <h1 class="heading_acc_head">Welcome {{ name }}!</h1>
+  </div>
+  <div class="nav_wrap" *ngIf="!router.url.includes('account')">
+
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav"></div>
+      <a routerLink="/" (click)="cleardata()" routerLinkActive="w--current" [routerLinkActiveOptions]="{exact: true}"
+        class="nav_link" data-ix="link-hover" style="transition: color 0.2s ease 0s;">Home</a>
+    </div>
+
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav"></div>
+      <a routerLink="/cars" (click)="cleardata()" routerLinkActive="w--current" class="nav_link" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">Listings</a>
+    </div>
+
+  
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav"></div>
+      <a routerLink="/finance-calculator" (click)="cleardata()" routerLinkActive="w--current" class="nav_link"
+        data-ix="link-hover" style="transition: color 0.2s ease 0s;">Finance Calculator</a>
+    </div>
+
+    <div class="nav_holder" data-ix="show-nav-line">
+
+      <div class="line_nav"></div>
+      <div data-hover="true" data-delay="0" class="nav_link drop w-dropdown" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">
+        <div class="dropdown-toggle w-dropdown-toggle" id="w-dropdown-toggle-2" aria-controls="w-dropdown-list-2"
+          aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0"
+          style="padding-bottom: 0;padding-top:25px">
+          <div class="icon w-icon-dropdown-toggle" aria-hidden="true" style="padding-top: 2px;"></div>
+          <div class="drop_font">About Us</div>
+        </div>
+        <nav class="dropdown-list w-dropdown-list" id="w-dropdown-list-2" aria-labelledby="w-dropdown-toggle-2">
+          <a routerLink="/who-we-are" (click)="cleardata()" routerLinkActive="w--current"
+            class="menu_link line w-dropdown-link" tabindex="0">Who We Are</a>
+          <a routerLink="/contact-us" (click)="cleardata()" routerLinkActive="w--current"
+            class="menu_link w-dropdown-link" tabindex="0">Contact Us</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav" style="transition: width 200ms ease 0s; width: 0px;"></div>
+      <a routerLink="/faq" (click)="cleardata()" routerLinkActive="w--current" aria-current="page" class="nav_link"
+        data-ix="link-hover" style="transition: color 0.2s ease 0s;">FAQ</a>
+    </div>
+
+    <div class="nav_holder" data-ix="show-nav-line">
+      <div class="line_nav" style="transition: width 200ms ease 0s; width: 0px;"></div>
+      <a href="https://www.autoblog.co.za/" target="_blank" class="nav_link" data-ix="link-hover"
+        style="transition: color 0.2s ease 0s;">Blog</a>
+    </div>
+
+  </div>
+
+  <a routerLink="/cars" class="nav_link link_sell" data-ix="link-hover"
+    style="transition: all 0.2s ease 0s;">
+    Buyer A Car
+  </a>
+
+  <a href="http://driftza.co.za/" target="_blank" class="nav_link link_sell" data-ix="link-hover"
+    style="transition: all 0.2s ease 0s;"><span class="plus_span">+
+    </span>Sell My Car</a>
+</div>

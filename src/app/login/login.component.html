@@ -1,0 +1,52 @@
+<div class="white_with_back wf-section">
+    <div class="login_holder">
+        <h2 class="sub_heading">Let&#x27;s Go</h2>
+        <h1 class="page_headings">Login to Your Account</h1>
+        <div class="w-form">
+            <!-- start login -->
+            <form name="email-form-3" data-name="Email Form 3">
+                <div class="w-layout-grid grid_contact">
+
+                    <input type="email" class="input_orange no_margin w-input" maxlength="256" [(ngModel)]="username"
+                        name="username" data-name="E Mail 2" data-ix="link-hover" placeholder="Username (E-Mail)"
+                        id="username">
+
+                    <input type="password" class="input_orange no_margin w-input" maxlength="256" [(ngModel)]="password"
+                        name="password" data-name="E Mail 2" data-ix="link-hover" placeholder="Password" id="password">
+
+                </div>
+                <br />
+                <div class="w-layout-grid grid_contact">
+
+                    <div class="message_div" [hidden]="!showUsernameError">
+                        <div>{{userNameError}}</div>
+                    </div>
+
+                    <div class="message_div" [hidden]="!showPasswordError">
+                        <div>Please Enter Password</div>
+                    </div>
+
+                </div>
+
+
+                <a (click)="onSubmit()" class="nav_link button_veh_main" data-ix="link-hover">Login</a>
+            </form>
+            <!-- end login -->
+
+            <!-- start options -->
+            <div class="login_bottom_div">
+                <div class="holder_bottom_acc">
+                    <h2 class="sub_heading_blue_small">Haven&#x27;t Got An Account?</h2>
+                    <a routerLink="/sell-my-car" class="nav_link smaller_button" data-ix="link-hover">Create Account</a>
+                </div>
+                <div class="holder_bottom_acc">
+                    <h2 class="sub_heading_blue_small">Forgot Your Password</h2>
+                    <a routerLink="/forgotPassword" class="nav_link smaller_button" data-ix="link-hover">Password
+                        Reset</a>
+                </div>
+            </div>
+            <!-- end options -->
+
+        </div>
+    </div>
+</div>

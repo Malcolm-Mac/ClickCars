@@ -1,0 +1,8 @@
+a:hover {
+    color: white !important;
+    text-decoration: none;
+  }
+.menu_link:hover{
+  color: #ff4d00 !important;
+    text-decoration: none;
+}

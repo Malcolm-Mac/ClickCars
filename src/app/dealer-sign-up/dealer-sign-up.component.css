@@ -1,0 +1,6 @@
+.message_div{
+    color: red;
+}
+.button:hover,.main_button_portal:hover,.button_red:hover {
+    color: white;
+}

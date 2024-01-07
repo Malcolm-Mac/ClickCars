@@ -1,0 +1,325 @@
+<div class="hero_section wf-section">
+
+    <div class="social_div">
+        <a href="https://www.facebook.com/edealerportalSA" target="_blank" class="facebook w-inline-block" data-ix="link-hover"></a>
+        <a href="https://www.instagram.com/mobilityonline" target="_blank" class="instagram w-inline-block" data-ix="link-hover"></a>
+    </div>
+    <div class="div_text">
+        <div class="banner_text_div">
+            <h1 class="banner_heading">Find Your <span class="orange">Perfect</span> Car</h1>
+        </div>
+        <div class="form-block w-form">
+            <form id="email-form" name="email-form" data-name="Email Form" class="quick_filter_div">
+                <div class="drop_holder">
+                    <div (click)="showOption('make')" id="makeDi" class="dropdown_filter margin" data-ix="link-hover">
+                        <div class="drop_text">{{filterOption.make}}</div>
+                        <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy" sizes="(max-width: 767px) 15px, (max-width: 991px) 2vw, 15px" srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                                alt="" class="arrow_icon"></div>
+                    </div>
+                    <div id="makeDiv" class="drop_list_main _3" style="display: none;">
+                        <a (click)="filterBy('make','All Makes')" class="drop_link line">All Make</a>
+                        <a *ngFor="let name of makes" (click)="filterBy('make',name)" class="drop_link line">{{name}}</a>
+                    </div>
+                </div>
+                <div class="drop_holder">
+                    <div (click)="showOption('model')" id="modelDi" class="dropdown_filter margin" data-ix="link-hover">
+                        <div class="drop_text">{{filterOption.model}}</div>
+                        <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy" sizes="(max-width: 767px) 15px, (max-width: 991px) 2vw, 15px" srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                                alt="" class="arrow_icon"></div>
+                    </div>
+                    <div id="modelDiv" class="drop_list_main _3" style="display: none;">
+                        <a (click)="filterBy('model','All Models')" class="drop_link line">All Model</a>
+                        <a *ngFor="let modelType of model" (click)="filterBy('model',modelType)" class="drop_link line">{{modelType}}</a>
+                    </div>
+                </div>
+                <div class="drop_holder">
+                    <div (click)="showOption('maxPrice')" id="maxPriceDi" class="dropdown_filter margin" data-ix="link-hover">
+                        <div class="drop_text">{{filterOption.maxPrice}}</div>
+                        <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy" sizes="(max-width: 767px) 15px, (max-width: 991px) 2vw, 15px" srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                                alt="" class="arrow_icon"></div>
+                    </div>
+                    <div id="maxPriceDiv" class="drop_list_main _3" style="display: none;">
+                        <a (click)="filterBy('maxPrice','Max Price')" class="drop_link line">Max Price</a>
+                        <a *ngFor="let maxPriceType of maxPrice" (click)="filterBy('maxPrice',maxPriceType)" class="drop_link line">{{maxPriceType}}</a>
+                    </div>
+                </div>
+                <a (click)="filterData()" class="search_quick w-inline-block" data-ix="link-hover"><img src="assets/images/Untitled-design-5.png" loading="lazy" alt="" class="image-2"></a>
+            </form>
+        </div>
+        <div class="model_secletor">
+            <a (click)="searchBodyType(0)" class="quick_blobs w-inline-block" data-ix="link-hover"><img src="assets/images/4-removebg-preview.png" loading="lazy" data-w-id="8d99120c-1e45-157b-f0df-5256c60f2323" alt="" class="model_images image-3">
+                <div class="text_model">Sedan</div>
+            </a>
+            <a (click)="searchBodyType(5)" class="quick_blobs w-inline-block" data-ix="link-hover"><img src="assets/images/2-removebg-preview.png" loading="lazy" data-w-id="e0d6bdb4-6dca-7bb1-3093-62e509774c85" alt="" class="model_images">
+                <div class="text_model">Coupe</div>
+            </a>
+            <a (click)="searchBodyType(1)" class="quick_blobs w-inline-block" data-ix="link-hover"><img src="assets/images/1-removebg-preview-1.png" loading="lazy" data-w-id="82fba254-1701-56a2-18a2-efa16d43f0b5" alt="" class="model_images">
+                <div class="text_model">SUV</div>
+            </a>
+            <a (click)="searchBodyType(2)" class="quick_blobs w-inline-block" data-ix="link-hover"><img src="assets/images/3-removebg-preview.png" loading="lazy" data-w-id="b74991a3-6acb-8a76-0304-01013d499bf4" alt="" class="model_images">
+                <div class="text_model">Hatchback</div>
+            </a>
+            <a (click)="searchBodyType(4)" class="quick_blobs w-inline-block" data-ix="link-hover"><img src="assets/images/5-removebg-preview-1.png" loading="lazy" data-w-id="87475138-4556-b099-76fe-5d61bdf8161b" alt="" class="model_images">
+                <div class="text_model">Convertible</div>
+            </a>
+            <a (click)="searchBodyType(7)" class="quick_blobs w-inline-block" data-ix="link-hover"><img src="assets/images/6-removebg-preview.png" loading="lazy" data-w-id="02dcaa96-b747-06a8-01ff-5aa85ae30a90" alt="" class="model_images">
+                <div class="text_model">Bakkie</div>
+            </a>
+        </div>
+    </div>
+    <div data-poster-url="https://uploads-ssl.webflow.com/61448210d8871e0ebd2819c1/614497303aac5a1330bf7ba8_Untitled design (2)-poster-00001.jpg" data-video-urls="https://uploads-ssl.webflow.com/61448210d8871e0ebd2819c1/614497303aac5a1330bf7ba8_Untitled design (2)-transcode.mp4,https://uploads-ssl.webflow.com/61448210d8871e0ebd2819c1/614497303aac5a1330bf7ba8_Untitled design (2)-transcode.webm"
+        data-autoplay="true" data-loop="true" data-wf-ignore="true" class="background-video w-background-video w-background-video-atom">
+        <video autoplay muted="muted" loop style="background-image:url(&quot;https://uploads-ssl.webflow.com/61448210d8871e0ebd2819c1/614497303aac5a1330bf7ba8_Untitled design (2)-poster-00001.jpg&quot;)" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover"
+            #videoPlayer>
+            <source 
+                src="assets/video/614497303aac5a1330bf7ba8_Untitled design (2)-transcode.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+<div class="body_section_white wf-section">
+    <div class="body_div_1400 w-clearfix">
+        <h2 class="sub_heading">Awesome!</h2>
+        <h1 class="page_headings">Featured Listings</h1>
+        <div class="featured_listings_div">
+            <div class="_50-_div">
+
+                <div class="w-layout-grid grid">
+
+                    <!--start feature listing grid-->
+                    <a *ngFor="let feature of featured.slice(1,5)" class="car_listing w-inline-block" data-ix="link-hover" (click)="redirectToComponent(feature.VEHICLEID)">
+                        <div class="image_holder">
+                            <img [src]="feature.vehicleImage" loading="lazy" alt="Used {{feature.YEAR}} {{feature.MAKE}} {{feature.MODEL}} for Sale in South Africa from {{feature.DEALERNAME}}" class="car_image">
+                            <div class="absolute_dealer_logo small" *ngIf="feature.LOGO != null && feature.LOGO != '' && feature.LOGO !='https://e-dealerportal.co.za'">
+                                <img src="{{feature.LOGO}}" loading="lazy" sizes="(max-width: 479px) 26vw, (max-width: 991px) 27vw, 13vw" alt="" class="dealer_logo small">
+                            </div>
+                        </div>
+                        <div class="div-block-2 small">
+                            <div class="model_text small">{{feature.MAKE}} {{feature.MODEL}}</div>
+                            <div class="price small">R {{isNumber(feature.PRICE)}}</div>
+                            <div class="model_extras small">
+                                <div class="model_info">
+                                    <div class="year_model small">{{feature.YEAR}}</div>
+                                    <div class="extras_info_text small">{{feature.MILEAGE}} km</div>
+                                    <div class="extras_info_text small">{{feature.TRANSMISSION}}</div>
+                                    <div class="extras_info_text small">{{feature.FUELTYPE}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <!--end feature listing grid-->
+                </div>
+
+            </div>
+
+            <!--start feature list single car-->
+            <div class="_50-_div left" *ngFor="let feature of featured.slice(0,1)" (click)="redirectToComponent(feature.VEHICLEID)">
+                <div class="car_listing" data-ix="link-hover">
+                    <div class="image_holder">
+                        <img [src]="feature.vehicleImage" loading="lazy" alt="Used {{feature.YEAR}} {{feature.MAKE}} {{feature.MODEL}} for Sale in South Africa from {{feature.DEALERNAME}}" class="car_image">
+                        <div class="absolute_dealer_logo" *ngIf="feature.LOGO != null && feature.LOGO != '' && feature.LOGO !='https://e-dealerportal.co.za'">
+                            <img src="{{feature.LOGO}}" loading="lazy" sizes="(max-width: 991px) 100vw, 152.765625px" alt="" class="dealer_logo">
+                        </div>
+                    </div>
+                    <div class="div-block-2">
+                        <div class="model_text">{{feature.MAKE}} {{feature.MODEL}}</div>
+                        <div class="model_extras">
+                            <div class="model_info">
+                                <div class="year_model">{{feature.YEAR}}</div>
+                                <div class="extras_info_text">{{feature.MILEAGE}} km</div>
+                                <div class="extras_info_text">{{feature.TRANSMISSION}}</div>
+                                <div class="extras_info_text">{{feature.FUELTYPE}}</div>
+                                <div class="extras_info_text">{{feature.BODY}}</div>
+                            </div>
+                            <div class="model_price">
+                                <div class="price">R {{isNumber(feature.PRICE)}}</div>
+                            </div>
+                        </div>
+                        <a href="#" class="nav_link link_sell button_feature w-button">More Details</a>
+                    </div>
+                </div>
+            </div>
+            <!--end feature list single car-->
+
+        </div>
+        <a routerLink="/listing" class="main_button_new w-button">View All Vehicles</a>
+    </div>
+    <div class="banner_ad_space">
+        <!-- Checkup -->
+        <a href="{{banner[0].URLS}}"> <img src="{{banner[0].ADVERTSPATH}}" loading="lazy" sizes="(max-width: 479px) 92vw, (max-width: 767px) 95vw, (max-width: 991px) 94vw, 91vw" alt="" class="banner_ad">
+        </a>
+    </div>
+</div>
+<div class="body_section_grey wf-section" id="TopBrands">
+    <div class="body_div_1400 w-clearfix">
+        <div class="flex_heading w-clearfix">
+            <div class="heading_holder">
+                <h2 class="sub_heading">Check These Out!</h2>
+                <h1 class="page_headings">Top Brands</h1>
+            </div>
+            <div class="tickbox_holder_form w-form">
+                <form id="email-form-2" name="email-form-2" data-name="Email Form 2" class="form w-clearfix">
+                    <label *ngFor="let brand of topbrand.slice(0,6)" (click)="filterTopBrand(brand.BRAND)" [ngClass]="{'main_button_heading':true, 'w-radio':true, 'active':brand.BRAND==selectedmake}" data-ix="link-hover">
+                        <input type="radio" data-name="top_brands" id="node" name="top_brands" value="1"
+                            class="w-form-formradioinput radio_hide w-radio-input">
+                        <span for="node" class="heading_radio w-form-label">{{brand.BRAND}}<br>‍‍<span class="button_span_count">
+                            {{brand.NUM}}
+                                Listings</span></span>
+                            </label>
+
+                    <!--  <label (click)="filterTopBrand('VOLKSWAGEN')" [ngClass]="{'main_button_heading':true, 'w-radio':true, 'active':volkswagen}"
+                            data-ix="link-hover"><input type="radio" data-name="top_brands" id="node-2" name="top_brands"
+                                value="2" class="w-form-formradioinput radio_hide w-radio-input"><span for="node-2"
+                                class="heading_radio w-form-label">VOLKSWAGEN<br>‍<span class="button_span_count">
+                                    {{countBrand("VOLKSWAGEN")}}
+                                    Listings</span></span></label>
+
+                    <label (click)="filterTopBrand('FORD')" [ngClass]="{'main_button_heading':true, 'w-radio':true, 'active':ford}" data-ix="link-hover"><input
+                            type="radio" data-name="top_brands" id="node-4" name="top_brands" value="4"
+                            class="w-form-formradioinput radio_hide w-radio-input"><span for="node-4"
+                            class="heading_radio w-form-label">FORD<br>‍‍<span
+                                class="button_span_count">{{countBrand("FORD")}}
+                                Listings</span></span></label>
+
+                    <label (click)="filterTopBrand('BMW')" [ngClass]="{'main_button_heading':true, 'w-radio':true, 'active':bmw}" data-ix="link-hover"><input
+                            type="radio" data-name="top_brands" id="node-3" name="top_brands" value="3"
+                            class="w-form-formradioinput radio_hide w-radio-input"><span for="node-3"
+                            class="heading_radio w-form-label">BMW<br>‍<span
+                                class="button_span_count">{{countBrand("BMW")}}
+                                Listings</span></span></label>-->
+                </form>
+            </div>
+        </div>
+        <div class="popular_makes_div">
+            <div data-animation="cross" data-duration="1000" data-infinite="1" class="slider_popular w-slider">
+                <div class="w-slider-mask">
+                    <div class="w-slide">
+                        <div class="w-layout-grid grid_top_brands" sdfsd>
+                            <a *ngFor="let brand of topBrandView.slice(start,end)" class="car_listing slider w-inline-block" data-ix="link-hover">
+                                <div class="image_holder" (click)="redirectToComponent(brand.VEHICLEID)">
+                                    <img [src]="brand.vehicleImage" loading="lazy" alt="Used {{brand.YEAR}} {{brand.MAKE}} {{brand.MODEL}} for Sale in South Africa from {{brand.DEALERNAME}}" class="car_image">
+                                    <div class="absolute_dealer_logo small" *ngIf="brand.LOGO != null && brand.LOGO != '' && brand.LOGO !='https://e-dealerportal.co.za'">
+                                        <img src="{{brand.LOGO}}" loading="lazy" sizes="(max-width: 479px) 26vw, (max-width: 991px) 27vw, 231.890625px" alt="" class="dealer_logo small">
+                                    </div>
+                                </div>
+                                <div class="div-block-2 small">
+                                    <div class="model_text small">{{brand.MAKE}} {{brand.MODEL}} </div>
+                                    <div class="price small">R {{isNumber(brand.PRICE)}}</div>
+                                    <div class="model_extras small">
+                                        <div class="model_info">
+                                            <div class="year_model small">{{brand.YEAR}}</div>
+                                            <div class="extras_info_text small">{{isNumber(brand.MILEAGE)}} km</div>
+                                            <div class="extras_info_text small">{{brand.TRANSMISSION}}</div>
+                                            <div class="extras_info_text small">{{brand.FUELTYPE}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- <div class="w-slide">
+
+                        <div class="w-layout-grid grid-2">
+                            <a *ngFor="let brand of topBrandView.slice(4,8)" class="car_listing slider w-inline-block"
+                                data-ix="link-hover">
+                                <div class="image_holder">
+                                    <img [src]="brand.vehicleImage" loading="lazy" alt=""
+                                        class="car_image">
+                                    <div class="absolute_dealer_logo small">
+                                        <img src="{{brand.LOGO}}" loading="lazy"
+                                            sizes="(max-width: 479px) 26vw, (max-width: 991px) 27vw, 231.890625px"
+                                            alt="" class="dealer_logo small">
+                                    </div>
+                                </div>
+                                <div class="div-block-2 small">
+                                    <div class="model_text small">{{brand.MAKE}} {{brand.MODEL}} </div>
+                                    <div class="price small">R {{isNumber(brand.PRICE)}}</div>
+                                    <div class="model_extras small">
+                                        <div class="model_info">
+                                            <div class="year_model small">{{brand.YEAR}}</div>
+                                            <div class="extras_info_text small">{{brand.MILEAGE}} km</div>
+                                            <div class="extras_info_text small">{{brand.TRANSMISSION}}</div>
+                                            <div class="extras_info_text small">{{brand.FUELTYPE}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="w-slide">
+                        <div class="w-layout-grid grid-2">
+                            <a *ngFor="let brand of topBrandView.slice(8,12)" class="car_listing slider w-inline-block"
+                                data-ix="link-hover">
+                                <div class="image_holder">
+                                    <img [src]="brand.vehicleImage" loading="lazy" alt=""
+                                        class="car_image">
+                                    <div class="absolute_dealer_logo small">
+                                        <img src="{{brand.LOGO}}" loading="lazy"
+                                            sizes="(max-width: 479px) 26vw, (max-width: 991px) 27vw, 231.890625px"
+                                            alt="" class="dealer_logo small">
+                                    </div>
+                                </div>
+                                <div class="div-block-2 small">
+                                    <div class="model_text small">{{brand.MAKE}} {{brand.MODEL}} </div>
+                                    <div class="price small">R {{isNumber(brand.PRICE)}}</div>
+                                    <div class="model_extras small">
+                                        <div class="model_info">
+                                            <div class="year_model small">{{brand.YEAR}}</div>
+                                            <div class="extras_info_text small">{{brand.MILEAGE}} km</div>
+                                            <div class="extras_info_text small">{{brand.TRANSMISSION}}</div>
+                                            <div class="extras_info_text small">{{brand.FUELTYPE}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div> -->
+                </div>
+                <div (click)="moveleft()" class="right-arrow left w-slider-arrow-left">
+                    <div class="w-icon-slider-left"></div>
+                </div>
+                <div (click)="moveright()" class="right-arrow w-slider-arrow-right">
+                    <div class="w-icon-slider-right"></div>
+                </div>
+                <div class="slide_nav w-slider-nav w-round"></div>
+            </div>
+        </div>
+        <a (click)="filterBrand(topBrandSelected)" class="main_button_new slider_button w-button" data-ix="link-hover">View
+            {{countBrand(topBrandSelected)}} {{topBrandSelected}} For
+            Sale</a>
+    </div>
+    <div class="banner_ad_space">
+        <a (click)="filterByDealer('Struben Street Motors')">
+            <img src="{{banner[2].ADVERTSPATH}}" loading="lazy" sizes="(max-width: 479px) 92vw, (max-width: 767px) 95vw, (max-width: 991px) 94vw, 91vw" alt="" class="banner_ad">
+        </a>
+    </div>
+</div>
+<div class="body_section_white wf-section">
+    <div class="body_div_1400">
+        <h2 class="sub_heading centered">Your Choice</h2>
+        <h1 class="page_headings normal_magin_centered">Why Enquire With Us?</h1>
+        <p class="paragraph">Top Quality Pre-Owned Vehicle in South Africa. Your Can Sell Your Vehicle Securely Online or Buy Your Next Dream Vehicle From One Of Our Approved Dealers.</p>
+        <div class="double_hero_block_div">
+            <div class="w-layout-grid grid_double_hero">
+                <div id="w-node-_0a4c85b8-f5cb-004e-24fe-b8350ba0b48c-862819c3" class="hero_block">
+                    <h1 class="page_headings white">Finance Calculator</h1>
+                    <p class="paragraph white">Top Quality Pre-Owned Vehicle in South Africa. Your Can Sell Your Vehicle Securely Online or Buy Your Next Dream Vehicle From One Of Our Approved Dealers.</p>
+                    <a routerLink="/finance-calculator" class="nav_link link_white" data-ix="link-hover">Calculate
+                        Now</a>
+                </div>
+                <div id="w-node-_1d006043-704e-645f-9c1e-737715107cef-862819c3" class="hero_block_blue">
+                    <h1 class="page_headings white">How To Sell Your Car?</h1>
+                    <p class="paragraph white">Follow Our Quick Buy / Sell Guide Below:<br><br>Step 1: Click &#x27;Sell My Car&#x27; at the top of the page<br>Step 2: Fill In Your Personal Information<br>Step 3: Fill In Your Vehicle Details<br>Step 4: Upload Your Photos</p>
+                    <a href="http://driftza.co.za/" target="_blank" class="nav_link link_white" data-ix="link-hover">Sell My Car</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner_ad_space">
+        <a href="{{banner[5].URLS}}" target="_blank">
+            <img src="{{banner[5].ADVERTSPATH}}" loading="lazy" sizes="(max-width: 479px) 92vw, (max-width: 767px) 95vw, (max-width: 991px) 94vw, 91vw" alt="" class="banner_ad">
+        </a>
+    </div>
+</div>

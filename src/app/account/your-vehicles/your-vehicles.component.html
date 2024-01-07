@@ -1,0 +1,1129 @@
+<div class="tab_pane_acc w-tab-pane w--tab-active">
+    <div class="vehicle_holder" >
+        <div class="w-layout-grid grid-12">
+           
+            <div class="new_vehicle_add" *ngFor="let vehicles of userVehicles" [hidden]="!showVehicleSummary">
+                <div class="rel_button">
+                  <div class="edit_car" (click)="editUserVehicle(vehicles.VehicleID)">Edit</div>
+                  <div class="remove_car"  (click)="removeUserVehicle(vehicles.VehicleID)">Remove</div>
+                </div>
+                <h1 class="heading_vehicle">{{vehicles.YEAR}} {{vehicles.MAKE}} {{vehicles.MODELTYPE}}</h1>
+                <div class="added_car_div">
+                  <div class="stats_div">
+                    <div class="stats_holder">
+                      <div class="w-layout-grid grid_car_choice">
+                        <div id="w-node-_6a6999a4-40ce-8c8b-9324-ad8364a42416-3e7e1144" class="holder_div">
+                          <a [hidden]="!((vehicles.PendingAdvertise == '' || vehicles.PendingAdvertise == null) && (vehicles.AdvertisedOn == 'Not listed' || vehicles.AdvertisedOn == 'wholesale')) " (click)="showAdveriseVehicle(vehicles.VehicleID)" class="main_button_blue-2 smaller w-button">Advertise</a>
+                          <a [hidden]="!(vehicles.PendingAdvertise == '1' && (vehicles.AdvertisedOn== 'Not listed' || vehicles.AdvertisedOn == 'wholesale'))" class="main_button_blue-2 approval w-button">Pending Approval</a>
+                          <a [hidden]="!(vehicles.AdvertisedOn == 'sites' || vehicles.AdvertisedOn== 'both')" class="main_button_blue-2 activated w-button">✓ Advertised</a>
+                          <div [hidden]="!(vehicles.AdvertisedOn == 'sites' || vehicles.AdvertisedOn== 'both')" class="veh_info traderet ng-star-inserted">
+                              <strong class="bold-text-7">Advertised Price: </strong> 
+                            <span class="ad_price_span"> R {{isNumber(vehicles.Price)}}</span>
+                        </div>
+                          <div class="w-layout-grid grid-13" [hidden]="!(vehicles.AdvertisedOn != 'Not listed' && vehicles.AdvertisedOn != 'wholesale')">
+                            <div id="w-node-e0dd6dc1-7ed7-f922-ea5a-98772c8c2b9b-3e7e1144" 
+                            class="stats">{{viewNumber(vehicles.Totalviews)}} Views</div>
+                            <div class="stats">{{viewNumber(vehicles.TotalClicks)}} Contact Clicks</div>
+                            <div class="stats">{{viewNumber(vehicles.TotalLeads)}} Leads</div>
+                          </div>
+                          <a [hidden]="!(vehicles.AdvertisedOn == 'sites' || vehicles.AdvertisedOn== 'both')" class="small_button" (click)="editAdveriseVehiclePrice(vehicles.VehicleID)"> 
+                              Edit Price</a>
+                          <a [hidden]="!(vehicles.AdvertisedOn == 'sites' || vehicles.AdvertisedOn== 'both')" class="small_button decline" (click)="removeVehicleFromAdvertise(vehicles.VehicleID)">
+                              Remove From Advertising</a>
+                        </div>
+                        <div class="holder_div">
+                          <a [hidden]="!((vehicles.PendingAuction == '' || vehicles.PendingAuction == null) && vehicles.vehicleAuctioned != '1')" (click)="getActionOffer(vehicles.VehicleID)" class="main_button_blue-2 smaller w-button">Get An Offer</a>
+                          <a [hidden]="!(vehicles.vehicleAuctioned == '1' && vehicles.ENDSTATUS == '0' && vehicles.STARTSTATUS == '0')" class="main_button_blue-2 activated w-button">Auction Scheduled: <span class="date_span">{{vehicles.TRADEDATE}}</span></a>
+                          <a [hidden]="!(vehicles.PendingAuction == '1')" class="main_button_blue-2 approval w-button">Pending Approval</a>
+                          <a [hidden]="!(vehicles.vehicleAuctioned == '1' && vehicles.ENDSTATUS == '0' && vehicles.STARTSTATUS == '1')" class="main_button_blue-2 activated w-button">Auction Running</a>
+                          <a [hidden]="!(vehicles.ENDSTATUS == '1' && vehicles.STARTSTATUS == '1')" class="main_button_blue-2 activated w-button">✓ Auction Complete</a>
+                          <div [hidden]="!(vehicles.ENDSTATUS == '1' && vehicles.STARTSTATUS == '1')" class="veh_info margined" >
+                              <strong class="bold-text-7" [hidden]="vehicles.OFFER == '0'">Highest Offer: </strong> 
+                              <span class="ad_price_span"> {{OfferPrice(vehicles.OFFER)}}</span>
+                           </div>
+                          <a [hidden]="!(vehicles.ENDSTATUS == '1' && vehicles.STARTSTATUS == '1' && vehicles.OFFER != '0')" class="small_button accept" (click)="offerResponse(vehicles.VehicleID, 'Accept')">Accept</a>
+                          <a [hidden]="!(vehicles.ENDSTATUS == '1' && vehicles.STARTSTATUS == '1' && vehicles.OFFER != '0')" class="small_button decline" (click)="offerResponse(vehicles.VehicleID, 'Decline')">Decline</a>
+                        </div>
+                        <div class="holder_div">
+                          <a (click)="getTradeAndRetail(vehicles.VehicleID,false)" *ngIf="vehicles.Transvalues == null || vehicles.Transvalues == ''" class="main_button_blue-2 smaller w-button">Get Trade / Retail</a>
+                          <div class="veh_info tr" *ngIf="vehicles.Transvalues == '1'">
+                              <strong class="bold-text-7">Date Checked: </strong> <span class="ad_price_span"> {{viewDate(vehicles.TRADEDATE)}}</span>
+                            </div>
+                            <a *ngIf="vehicles.Transvalues == '0'" class="main_button_blue-2 activated w-button">No Trade & Retail Found</a>
+                          <div class="veh_info traderet" *ngIf="vehicles.Transvalues == '1'">
+                              <strong class="bold-text-7">Trade: </strong> <span class="ad_price_span"> R {{isNumber(vehicles.TRADE)}}</span>
+                            </div>
+                          <div class="veh_info traderet" *ngIf="vehicles.Transvalues == '1'">
+                              <strong class="bold-text-7">Retail: </strong> 
+                            <span class="ad_price_span"> R {{isNumber(vehicles.RETAIL)}}</span>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="car_holder">
+                      <img width="200" loading="lazy" src="{{vehicles.vehicleImages}}" alt="" class="car_image_loaded">
+                    <div class="w-layout-grid grid_info">
+                      <div class="veh_info"><strong class="bold-text-8">{{isNumber(vehicles.MILEAGE)}} km</strong></div>
+                      <div class="veh_info"><strong class="bold-text-9">{{vehicles.REGNO}}</strong></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <a class="new_vehicle_add w-inline-block" (click)="resetAddVehicle()" [hidden]="!showAddvehicleButton">
+                <div class="add_car_div">
+                    <h1 class="heading_add">+ Add Your Car</h1><img width="200" loading="lazy"
+                        src="assets/images/cars_icon.png" alt="" class="car_icon">
+                       
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="form_lading w-form">
+        <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" class="form_landing2">
+            <div class="flex_box_h">
+                <div class="load_right_div" [hidden]="!showSummary">
+                   
+                    <div class="content_holder">
+                        <div class="form_holder_small_trade light" >
+                            <div class="password_2"><img loading="lazy"
+                                    src="assets/images/Social-Media-Icons-2_1Social-Media-Icons-2.png" alt=""
+                                    class="eye_ball_icon"></div>
+                            <h1 class="dashboard-heading_white_smaller blue">Summary</h1>
+                            <div class="summary_1">
+                                <div class="load_info_sub blue">Vehicle: 
+                                    <span class="bi_bold">{{vehicle.YEAR}} {{vehicle.MAKE}} {{vehicle.MODELTYPE}} </span></div>
+                                <div class="load_info_sub blue">Intro Date: <span class="bi_bold">
+                                    {{vehicle.IntroDates}}</span></div>
+                                <div class="load_info_sub blue">Disc Date: <span class="bi_bold">
+                                    {{vehicle.DiscYear}}</span></div>
+                                <div class="load_info_sub blue">Body Type: <span class="bi_bold">
+                                    {{vehicle.BodyType}}</span></div>
+                                <div class="load_info_sub blue">Drive: <span class="bi_bold"> {{vehicle.Drive}}</span>
+                                </div>
+                                <div class="load_info_sub blue">Transmission: <span class="bi_bold"> {{vehicle.Transmission}}</span></div>
+                                <div class="load_info_sub blue">Fuel: <span class="bi_bold">{{vehicle.Fuel}}</span>
+                                </div>
+                                <div class="load_info_sub blue">MM Code: <span class="bi_bold">{{vehicle.MMCode}}</span>
+                                </div>
+                            </div>
+                            <div class="summary_1 no_line">
+                                <div class="load_info_sub blue">Reg: <span class="bi_bold">{{vehicle.REGNO}}</span>
+                                </div>
+                                <div class="load_info_sub blue">VIN: <span class="bi_bold">{{vehicle.VIN}}</span>
+                                </div>
+                                <div class="load_info_sub blue">Licence Expiry: <span class="bi_bold"></span></div>
+                                <div class="load_info_sub blue">Interior: <span class="bi_bold">{{vehicle.InteriorColour}}</span>
+                                </div>
+                                <div class="load_info_sub blue">Exterior: <span class="bi_bold">{{vehicle.ExteriorColour}}</span>
+                                </div>
+                                <div class="load_info_sub blue">Price: <span class="bi_bold">{{vehicle.ExteriorColour}}</span>
+                                </div>
+                            </div>
+                            <div class="summary_1 no_line">
+                                <h1 class="load_info_sub blue short"><strong class="bold-text-6">Description
+                                        /Accessories:</strong></h1>
+                                <div class="accessories_holder" *ngIf="isDefined(vehicle.Accessories)">
+                                    <div class="load_info_sub blue short">{{vehicle.Description}} </div>
+                                    
+
+                                    <div class="accessories_holder" >
+                                        <div class="load_info_sub blue short" *ngFor="let accessory of selectedAccessories"> 
+                                            {{accessory}},
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="load_steps">
+                    <div class="main_holder_div_padded" [hidden]="!showAddVehicle">
+                        <div class="heading_wrapper">
+                            <div class="main_heading">+ Add Your Car</div>
+                        </div>
+                        <div class="input_wrapper">
+                            <label for="email" class="input_tag">Year</label><label
+                                for="title_sell" class="required_tag">* Required</label>
+                                
+                                <select  [(ngModel)]="selectedYear" [disabled]="vehicle.isEditVehicle"
+                                class="input_fields_tagged w-input" maxlength="256" name="year" data-name="Name 3"
+                                placeholder="" id="title_sell" (change)="getMakesByYear()">
+                                    <option [value]="year" *ngFor="let year of years" > {{year}}
+
+                                    </option>
+                                </select>   
+                                <div class="message_div" [hidden]="!showYearError"><div >Please Select Year</div> </div>
+                            </div>
+                        <div class="input_wrapper w-clearfix"><label for="email" class="input_tag">Make</label><label
+                                for="node" class="required_tag">*
+                                Required</label>
+                                
+                                <select (change)="getModelByMakes()" [disabled]="vehicle.isEditVehicle"
+                                 [(ngModel)]="selectedMake" class="input_fields_tagged w-input"
+                                    name="makes" >
+                                    <option [ngValue]="make" *ngFor="let make of makes"> {{make}}
+
+                                    </option>
+                                </select>   
+                                <div class="message_div" [hidden]="!showMakeError"><div >Please Select Make</div> </div>
+                            </div>
+                        <div class="input_wrapper w-clearfix"><label for="email" class="input_tag">Model</label><label
+                                for="node" class="required_tag">*
+                                Required</label>
+                                <select (change)="getModelTypeByModel()" [(ngModel)]="selectedModel"  class="input_fields_tagged w-input" 
+                                name="Model"  [disabled]="vehicle.isEditVehicle" >
+                                    <option [ngValue]="model" *ngFor="let model of models"> {{model}} </option>   
+                                </select>   
+                                <div class="message_div" [hidden]="!showModelError"><div >Please Select Model</div> </div>
+                            </div>
+                        <div class="input_wrapper w-clearfix"><label for="email" class="input_tag">Model
+                                Type</label><label for="node" class="required_tag">* Required</label>
+                                
+                                <select [(ngModel)]="selectedModelType"  (change)="getIntroDate()" class="input_fields_tagged w-input" 
+                                 name="modelType" [disabled]="vehicle.isEditVehicle">
+                                    <option [value]="modelType" *ngFor="let modelType of modelTypes"> {{modelType}} </option> 
+                                </select>   
+                                <div class="message_div" [hidden]="!showModelTypeError"><div >Please Select Model Type</div> </div>
+                            </div>
+                        <div class="input_wrapper w-clearfix">
+                            <label for="email" class="input_tag">Intro / Disc
+                                Year</label><label for="node" class="required_tag">* Required</label>
+                                
+                                <select  [(ngModel)]="selectedIntroDates" (change)="getMMCODE()"  class="input_fields_tagged capitalized w-input"  name="IntroDate"
+                                [disabled]="vehicle.isEditVehicle">
+                                    <option [value]="introDate.introView" *ngFor="let introDate of introDates"> {{introDate.introView}} </option> 
+                                </select>   
+                                <div class="message_div" [hidden]="!showIntroDateError"><div >Please Select Intro Date </div> </div>
+                        </div>
+                        <div class="input_wrapper w-clearfix"><label for="email" class="input_tag">Mileage</label><label
+                                for="node" class="required_tag">*
+                                Required</label>
+                            <div class="input_split_div">
+                                <input type="text" [(ngModel)]="mileage" class="input_fields_tagged w-input"
+                                    maxlength="7" name="mileage" 
+                                    >
+                                <div class="unit_div">
+                                    <div>KM</div>
+                                </div>
+                            </div>
+                            <div class="message_div" [hidden]="!showMileageError"><div> {{mileageMessage}}</div> </div>
+                        </div>
+                        <div class="input_wrapper w-clearfix"><label for="email" class="input_tag">Body
+                                Type</label><label for="node" class="required_tag">* Required</label>
+                                <select [(ngModel)]="selectedBodyType" class="input_fields_tagged w-input"  name="Body Type">    
+                                    <option value=""></option>
+                                    <option value="B/S">Bus</option>
+                                    <option value="Cabriolet">Cabriolet</option>
+                                    <option value="Campers">Campers</option>
+                                    <option value="C/B">Convertible</option>
+                                    <option value="C/P">Coupe</option>
+                                    <option value="SUV">Crossover-SUV</option>
+                                    <option value="D/C">Double Cab Bakkie</option>
+                                    <option value="Extended Cab">Extended Cab</option>
+                                    <option value="Fastback">Fastback</option>
+                                    <option value="H/B">Hatchback</option>
+                                    <option value="Minibus">Minibus</option>
+                                    <option value="MPV">Multi Purpose Vehicle</option>
+                                    <option value="Panel Van">Panel Van</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="S/D">Sedan</option>
+                                    <option value="S/C">Single Cab Bakkie</option>
+                                    <option value="SAV">Sport Activity Vehicle</option>
+                                    <option value="S/W">Station Wagon</option>
+                                </select>   
+                                <div class="message_div" [hidden]="!showBodyTypeError"><div >Please Select Body Type</div> </div>
+                            </div>
+                        <div class="input_wrapper w-clearfix"><label for="email" class="input_tag">Drive</label><label
+                                for="node" class="required_tag">*
+                                Required</label>
+                                
+                                <select [(ngModel)]="selectedDrive" class="input_fields_tagged w-input"  
+                                name="Drive">
+                                    <option value=""></option>
+                                    <option value="4x4">4x4</option>
+                                    <option value="Front Wheel">Front Wheel</option>
+                                    <option value="Rear Wheel">Rear Wheel</option>
+                                    <option value="All Wheel Drive">All Wheel Drive</option>
+                                </select>   
+                                <div class="message_div" [hidden]="!showVehicleDriveError"><div >Please Select Vehicle Drive</div> </div>
+                            
+                            </div>
+                        <div class="input_wrapper w-clearfix"><label for="email"
+                                class="input_tag">Transmission</label><label for="node" class="required_tag">*
+                                Required</label>
+                                <select  class="input_fields_tagged w-input"  [(ngModel)]="selectedTransmission"
+                                name="Transmission">
+                                    <option value=""></option>
+                                    <option value="Automatic">Automatic</option>
+                                    <option value="Manual">Manual</option>
+                                </select>   
+                                <div class="message_div" [hidden]="!showTransmissionError"><div >Please Select Transmission</div> </div>
+                            </div>
+                        <div class="input_wrapper w-clearfix"><label for="email" class="input_tag">Fuel</label><label
+                                for="node" class="required_tag">*
+                                Required</label>
+                                <select class="input_fields_tagged w-input"  
+                                name="Fuel" data-name="Name 3"  [(ngModel)]="selectedFuelType" id="title_sell">
+                                    <option value=""></option>
+                                    <option value="Petrol">Petrol</option>
+                                    <option value="Manual">Diesel</option>
+                                    <option value="Automatic">Electric</option>
+                                   
+                                </select>   
+                                <div class="message_div" [hidden]="!showFuelError"><div >Please Select Fuel</div> </div>
+                            </div>
+                        <div class="input_wrapper w-clearfix">
+                            <label for="email" class="input_tag">Registration
+                                No.</label><label for="node" class="required_tag">* Required</label>
+                                <input type="text"
+                                class="input_fields_tagged w-input" maxlength="256" name="Registration" [(ngModel)]="registration">
+                                <div class="message_div" [hidden]="!showRegistrationError"><div >Please Select Registration</div> </div>
+                           
+                            </div>
+
+                        <div class="input_wrapper"><label for="email" class="input_tag">VIN No.</label><input
+                                type="text" class="input_fields_tagged w-input" maxlength="256" name="VIN"
+                               [(ngModel)]="vinNumber">
+                                <div class="message_div" [hidden]="!showVinError"><div >{{vinErrorMessage}}</div> </div>
+                            </div>
+
+                        <div class="input_wrapper"><label for="email" class="input_tag">MM Code</label>
+                            <input
+                                type="text" class="input_fields_tagged w-input" maxlength="256" name="mmcode" disabled
+                                [(ngModel)]="mmcode">
+                            </div>
+                        <div class="pagination_div w-clearfix">
+                            <input type="submit" value="Next: Accessories"
+                                data-wait="Please wait..." class="main_button_blue-2 end w-button" (click)="moveToAccessories()">
+                               
+                                <input type="submit" (click)="backToStep(0)"
+                                value="Cancel" data-wait="Please wait..." class="main_button_blue-2 w-button">
+                            </div>
+                    </div>
+                    <div class="main_holder_div_padded" [hidden]="!showAccessories">
+                        <div class="heading_wrapper">
+                            <div class="main_heading">Accessories</div>
+                        </div>
+                        <div class="accessories_div">
+                            <div class="w-layout-grid grid_accessories">
+                                
+                                <label   [ngClass]="{'w-checkbox':true ,'accessories_check':true, 'checked':selectedAccessories.includes(accessory)}" *ngFor="let accessory of accessories">
+                                    <div
+                                        class="w-checkbox-input w-checkbox-input--inputType-custom check_box_styling-3 hidden">
+                                    </div>
+                                    <input type="checkbox" name="accessory"  (change)="selectAccessoriesValue(accessory)"
+                                        data-name="Checkbox 5" style="opacity:0;position:absolute;z-index:-1">
+                                        <span
+                                        [ngClass]="{'check_label':true , 'w-form-label':true , 'white_text':selectedAccessories.includes(accessory) }" > {{accessory}} </span>
+                                </label>
+                                
+                                </div>
+                        </div><label for="field-11" class="input_tag">Vehicle Description</label>
+                        <textarea id="field-11"
+                            name="vehicle Desctription" maxlength="5000" [(ngModel)]="vehicleDesctription"
+                            class="input_fields_tagged w-input">
+                        </textarea>
+                        <div class="pagination_div w-clearfix">
+                            <input type="submit" value="Back" (click)="backToStep(1)"
+                                data-wait="Please wait..." class="main_button_blue-2 w-button">
+                                <input type="submit"
+                                value="Next: Additional Information" data-wait="Please wait..."
+                                class="main_button_blue-2 end w-button" (click)="moveToAdditionalInformation()">
+                            </div>
+                    </div>
+                    <div class="main_holder_div_padded" [hidden]="!showAdditionalInfor">
+                        <div class="heading_wrapper">
+                            <div class="main_heading">Additional Info </div>
+                        </div>
+                        <div class="input_wrapper"><label for="email" class="input_tag">Interior
+                                Material</label>
+                            <div class="w-layout-grid material_grid">
+                                <label
+                                    class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Material"
+                                        id="radio-5" value="Leather" data-name="Radio 5"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (change)="selectColor(0,'Leather')">
+                                        <span
+                                        class="material_label w-form-label" for="radio-5">Leather</span><img
+                                        loading="lazy" src="assets/images/1_21.png" alt=""
+                                        class="material_icon">
+                                    </label>
+                                        
+                                        <label
+                                        class="filter_radio vertical_flex w-radio">
+                                        <input type="radio" name="Material" (change)="selectColor(0,'Cloth Leather')"
+                                        id="radio-6" value="Cloth" data-name="Radio 6"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="material_label w-form-label" for="radio-6">Cloth
+                                        Leather</span><img loading="lazy" src="assets/images/3_23.png" alt=""
+                                        class="material_icon">
+                                    </label>
+                                        
+                                        <label
+                                        class="filter_radio vertical_flex w-radio">
+                                        <input type="radio" name="Material"
+                                        id="radio-7" value="Cloth" data-name="Radio 7" (change)="selectColor(0,'Cloth')"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="material_label w-form-label" for="radio-7">Cloth </span><img
+                                        loading="lazy" src="assets/images/2_12.png" alt=""
+                                        class="material_icon"></label>
+                                        
+                                        <label
+                                        class="filter_radio vertical_flex w-radio"><input type="radio" name="Material"
+                                        id="radio-8" value="Vinyl" data-name="Radio 8" (change)="selectColor(0,'Vinyl')"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="material_label w-form-label" for="radio-8">Vinyl</span><img
+                                        loading="lazy" src="assets/images/4_14.png" alt=""
+                                        class="material_icon">
+                                    </label>
+                                    </div>
+                                    <div class="message_div" [hidden]="!showMaterialError"><div >Please Select Interior Material</div> </div>
+                                    
+                                    
+                                    <label for="email" 
+                                class="input_tag">Interior Colour</label>
+                            <div class="w-layout-grid colour_grid">
+                                <label
+                                    class="filter_radio colour w-clearfix w-radio"><input type="radio" name="Interior" (change)="selectColor(1,'Black')"
+                                        id="radio-9" value="Black" data-name="Radio 9"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-9">Black</span>
+                                    <div class="pallete _11"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio"  (change)="selectColor(1,'Beige')"
+                                        name="Interior" id="radio-10" value="Beige" data-name="Radio 10"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-10">Beige</span>
+                                    <div class="pallete _2"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Brown')"
+                                        name="Interior" id="radio-11" value="Brown" data-name="Radio 11"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-11">Brown</span>
+                                    <div class="pallete _13"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Blue')"
+                                        name="Interior" id="radio-12" value="Blue" data-name="Radio 12"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-12">Blue</span>
+                                    <div class="pallete _1"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Bronze')"
+                                        name="Interior" id="radio-13" value="Bronze" data-name="Radio 13"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-13">Bronze</span>
+                                    <div class="pallete _12"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Burgundy')"
+                                        name="Interior" id="radio-14" value="Burgundy" data-name="Radio 14"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-14">Burgundy</span>
+                                    <div class="pallete _3"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Gold')"
+                                        name="Interior" id="radio-15" value="Gold" data-name="Radio 15"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-15">Gold</span>
+                                    <div class="pallete _14"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio"  (change)="selectColor(1,'Green')"
+                                        name="Interior" id="radio-16" value="Green" data-name="Radio 16"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-16">Green</span>
+                                    <div class="pallete _4"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio"  (change)="selectColor(1,'Grey')"
+                                        name="Interior" id="radio-17" value="Grey" data-name="Radio 17"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-17">Grey</span>
+                                    <div class="pallete _15"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Indigo')"
+                                        name="Interior" id="radio-18" value="Indigo" data-name="Radio 18"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-18">Indigo</span>
+                                    <div class="pallete _5"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Magenta')"
+                                        name="Interior" id="radio-19" value="Magenta" data-name="Radio 19"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-19">Magenta</span>
+                                    <div class="pallete _16"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio"  (change)="selectColor(1,'Maroon')"
+                                        name="Interior" id="radio-20" value="Maroon" data-name="Radio 20"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-20">Maroon</span>
+                                    <div class="pallete _6"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Navy')"
+                                        name="Interior" id="radio-21" value="Navy" data-name="Radio 21"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-21">Navy</span>
+                                    <div class="pallete _17"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Orange')"
+                                        name="Interior" id="radio-22" value="Orange" data-name="Radio 22"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-22">Orange</span>
+                                    <div class="pallete _7"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio"  (change)="selectColor(1,'Pink')"
+                                        name="Interior" id="radio-23" value="Pink" data-name="Radio 23"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-23">Pink</span>
+                                    <div class="pallete _18"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Purple')"
+                                        name="Interior" id="radio-24" value="Purple" data-name="Radio 24"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-24">purple</span>
+                                    <div class="pallete _17-1"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Red')"
+                                        name="Interior" id="radio-25" value="Red" data-name="Radio 25"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-25">Red</span>
+                                    <div class="pallete _19"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Silver')"
+                                        name="Interior" id="radio-26" value="Silver" data-name="Radio 26"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-26">silver</span>
+                                    <div class="pallete _9"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Turquoise')"
+                                        name="Interior" id="radio-27" value="Turquoise"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-27">Turquoise</span>
+                                    <div class="pallete _20"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'White')"
+                                        name="Interior" id="radio-28" value="White" data-name="Radio 28"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-28">white</span>
+                                    <div class="pallete _10"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(1,'Yellow')"
+                                        name="Interior" id="radio-29" value="Yellow" data-name="Radio 29"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label-2 no_margin w-form-label" for="radio-29">yellow</span>
+                                    <div class="pallete _21"></div>
+                                </label>
+                               
+                            </div>
+                            <div class="message_div" [hidden]="!showInteriorError"><div >Please Select Interior Color</div> </div>
+                        </div>
+                        <div class="input_wrapper">
+                            <label for="email" class="input_tag">Exterior Colour</label>
+                            <div class="w-layout-grid colour_grid"><label
+                                    class="filter_radio colour w-clearfix w-radio">
+                                    <input type="radio" name="Exterior" (change)="selectColor(2,'Black')"
+                                        value="Black" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-30">Black</span>
+                                    <div class="pallete _11"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'White')"
+                                        name="Exterior" id="radio-31" value="White"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-31">White</span>
+                                    <div class="pallete _10"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Silver')"
+                                        name="Exterior" id="radio-32" value="Silver"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-32">silver</span>
+                                    <div class="pallete _9"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Grey')"
+                                        name="Exterior" id="radio-33" value="Grey" data-name="Radio 33"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-33">Grey</span>
+                                    <div class="pallete _15"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Blue')"
+                                        name="Exterior" id="radio-34" value="Blue" data-name="Radio 34"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-34">Blue</span>
+                                    <div class="pallete _1"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Red')"
+                                        name="Exterior" id="radio-35" value="Red" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-35">Red</span>
+                                    <div class="pallete _19"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Yellow')"
+                                        name="Exterior" id="radio-36" value="Yellow" data-name="Radio 36"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label-2 no_margin w-form-label" for="radio-36">yellow</span>
+                                    <div class="pallete _21"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Navy')"
+                                        name="Exterior" id="radio-37" value="Navy"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-37">Navy</span>
+                                    <div class="pallete _17"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Orange')"
+                                        name="Exterior" id="radio-38" value="Orange" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-38">Orange</span>
+                                    <div class="pallete _7"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Beige')"
+                                        name="Exterior" id="radio-39" value="Beige" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-39">Beige</span>
+                                    <div class="pallete _2"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Brown')"
+                                        name="Exterior" id="radio-40" value="Brown" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-40">Brown</span>
+                                    <div class="pallete _13"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Bronze')"
+                                        name="Exterior" id="radio-41" value="Bronze" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-41">Bronze</span>
+                                    <div class="pallete _12"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Burgundy')"
+                                        name="Exterior" id="radio-42" value="Burgundy" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-42">Burgundy</span>
+                                    <div class="pallete _3"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Gold')"
+                                        name="Exterior" id="radio-43" value="Gold" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-43">Gold</span>
+                                    <div class="pallete _14"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Green')"
+                                        name="Exterior" id="radio-44" value="Green" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-44">Green</span>
+                                    <div class="pallete _4"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Indigo')"
+                                        name="Exterior" id="radio-45" value="Indigo"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-45">Indigo</span>
+                                    <div class="pallete _5"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Magenta')"
+                                        name="Exterior" id="radio-46" value="Magenta"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-46">Magenta</span>
+                                    <div class="pallete _16"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Maroon')"
+                                        name="Exterior" id="radio-47" value="Maroon"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-47">Maroon</span>
+                                    <div class="pallete _6"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio"  (change)="selectColor(2,'Pink')"
+                                        name="Exterior" id="radio-48" value="Pink" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-48">Pink</span>
+                                    <div class="pallete _18"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Purple')"
+                                        name="Exterior" id="radio-49" value="Purple" data-name="Radio 49"
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-49">purple</span>
+                                    <div class="pallete _17-1"></div>
+                                </label><label class="filter_radio colour w-clearfix w-radio"><input type="radio" (change)="selectColor(2,'Turquoise')"
+                                        name="Exterior" id="radio-50" value="Turquoise" 
+                                        class="w-form-formradioinput radio-circle w-radio-input"><span
+                                        class="checkbox_label no_margin w-form-label" for="radio-50">Turquoise</span>
+                                    <div class="pallete _20"></div>
+                                </label></div>
+                                <div class="message_div" [hidden]="!showExteriorError"><div >Please Select Exterior Color</div> </div>
+                        </div>
+                        
+                        <label class="w-checkbox normal_checkbox">
+                            <div [ngClass]="{'w-checkbox-input':true, 'w-checkbox-input--inputType-custom':true, 'check_box_styling-3': true, 'w--redirected-checked':isFullServiceHistory}">
+                            </div>
+                            <input type="checkbox" name="Full Service History" id="FullServiceHistory" [(ngModel)]="isFullServiceHistory" (change)="onAdditionalInforCheckBox(isFullServiceHistory,1)"
+                                style="opacity:0;position:absolute;z-index:-1"><span class="check_label w-form-label"
+                                for="checkbox-5">Full Service History</span>
+                        </label>
+                        
+                        <label class="w-checkbox normal_checkbox">
+                            <div [ngClass]="{'w-checkbox-input':true, 'w-checkbox-input--inputType-custom':true, 'check_box_styling-3': true, 'w--redirected-checked':isFirstOwnerVehicle}">
+                            </div><input type="checkbox" name="Valid License Disc" id="ValidLicenseDisc" [(ngModel)]="isValidLicenseDisc" (change)="onAdditionalInforCheckBox(isValidLicenseDisc,1)"
+                                style="opacity:0;position:absolute;z-index:-1">
+                                <span class="check_label w-form-label"
+                                for="checkbox-5">Valid License Disc</span>
+                        </label>
+                        
+                        <label class="w-checkbox normal_checkbox">
+                            <div [ngClass]="{'w-checkbox-input':true, 'w-checkbox-input--inputType-custom':true, 'check_box_styling-3': true, 'w--redirected-checked':isFirstOwnerVehicle}">
+                            </div>
+                            <input type="checkbox" [(ngModel)]="isFirstOwnerVehicle" name="First Owner Vehicle" id="FirstOwnerVehicle"  (change)="onAdditionalInforCheckBox(isFirstOwnerVehicle,2)"
+                                style="opacity:0;position:absolute;z-index:-1">
+                                <span class="check_label w-form-label"
+                                for="checkbox-5">First Owner Vehicle</span>
+                        </label>
+                        
+                        <label class="w-checkbox normal_checkbox">
+                            <div [ngClass]="{'w-checkbox-input':true, 'w-checkbox-input--inputType-custom':true, 'check_box_styling-3': true, 'w--redirected-checked':VehicleAccidentFree}">
+                            </div>
+
+                            <input type="checkbox" name="AccidentFree" id="VehicleIsAccidentFree"
+                             data-name="Checkbox 5"  [(ngModel)]="VehicleAccidentFree"  (change)="onAdditionalInforCheckBox(VehicleAccidentFree,3)"
+                                style="opacity:0;position:absolute;z-index:-1"><span class="check_label w-form-label"
+                                for="checkbox-5">Vehicle Is
+                                Accident-Free</span>
+
+                        </label>
+
+                        <div class="inspection">
+                            <div class="ins_report_text">Attach Inpection Report</div>
+                            <p class="veh_ins_para">Having your vehicle checked by an independent vehicle
+                                inspection provider and attaching the report will result in a more accurate
+                                value for your vehicle.</p>
+                            <div class="report_holder">
+                               
+
+                                    <div class="button-input">
+                                        <input type="submit" value="Attach Report" data-wait="Please wait..." class="main_button_blue-2 w-button">
+                                        <input type="file" class="input_full w-input" (change)="handleUpload($event, 'vehiclefile')">
+                                    </div>
+                                <div class="report_name" *ngFor="let file of base64PDf">
+                                    {{file.fileName}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pagination_div w-clearfix">
+                            <input type="submit" value="Back" (click)="backToStep(2)"
+                                data-wait="Please wait..." class="main_button_blue-2 w-button">
+                            <input type="submit" (click)="saveVehicleDetails()"
+                                value="Next: Damage Report" data-wait="Please wait..."
+                                class="main_button_blue-2 end w-button"></div>
+                    </div>
+                    <div class="main_holder_div_padded w-clearfix" [hidden]="!showDamages">
+                        <div class="heading_wrapper">
+                            <div class="main_heading">Damages</div>
+                        </div>
+                        <div class="w-layout-grid grid-_damage" [hidden]="!showdamagesHistory">
+                            <a  class="new_vehicle_add w-inline-block" (click)="addNewDamages()">
+                                <div class="add_car_div">
+                                    <h1 class="heading_add smaller_heading">+ Add Damage Item</h1>
+                                </div>
+                            </a>
+
+                            <div class="new_vehicle_add" *ngFor="let damage of vehicle.CosmeticDamagesList">
+                                <div class="rel_button">
+                                    <div class="remove_car" (click)="removeVehicleDamage(damage.DamagesID)">Remove</div>
+                                </div>
+                                <h1 class="heading_add damage">{{damage.Position}} {{damage.Area}} {{damage.Type}}</h1>
+                                <div class="damage_info"><strong class="bold-text-7">Estimated Repair:</strong>
+                                    <span class="ad_price_span">R {{damage.Price}}</span>
+                                </div>
+
+                                <img width="200" loading="lazy" *ngIf="damage.IMAGE != null" src="{{damage.IMAGE == null ? damage.ImagePath : damage.IMAGE}}" alt=""
+                                    class="damage_photo">
+
+                                <div class="add_car_div">
+                                    <div class="car_holder"></div>
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                        <div class="toggle_holder" [hidden]="!showDamagesToggle">
+                            <div class="toggle_label_right">Cosmetic</div>
+                            <label class="w-checkbox checkbox-field-10">
+                                <div id="toggle" class="w-checkbox-input w-checkbox-input--inputType-custom checkbox-3">
+                                </div>
+                                <input type="checkbox" name="checkbox-8"  [checked]="toggleDamage"
+                                (change)="damageToggleChange()"
+                                    style="opacity:0;position:absolute;z-index:-1">
+                                <span class="checkbox-label-10 w-form-label" for="checkbox-8"></span>
+                            </label>
+                            <div class="toggle_label_right">Mechanical</div>
+                        </div>
+
+                        <div class="split_div" [hidden]="!showMechanicalCheckBox">
+                            <div class="w-layout-grid grid_mechanical">
+
+                                <label class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Mechanical" id="radio-51" value="Radio" data-name="Radio 51"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (click)="selectMechanical('Engine')">
+                                    <span class="material_label w-form-label" for="radio-51">Engine</span>
+                                    <img loading="lazy" src="assets/images/Mechanical-6.png" alt=""
+                                        class="material_icon">
+                                </label>
+
+                                <label class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Mechanical" id="radio-51" value="Radio" data-name="Radio 51"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (click)="selectMechanical('Brakes')">
+                                    <span class="material_label w-form-label" for="radio-51">Brakes</span>
+                                    <img loading="lazy" src="assets/images/Mechanical-2.png" alt=""
+                                        class="material_icon">
+                                </label>
+
+                                <label class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Mechanical" id="radio-52" value="Radio" data-name="Radio 52"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (click)="selectMechanical('Electric')">
+                                    <span class="material_label w-form-label" for="radio-52">Electric</span>
+                                    <img loading="lazy" src="assets/images/Mechanical-5.png" alt=""
+                                        class="material_icon">
+                                </label>
+
+                                <label class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Mechanical" id="radio-53" value="Radio" data-name="Radio 53"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (click)="selectMechanical('Suspension')">
+                                    <span class="material_label w-form-label" for="radio-53">Suspension</span>
+                                    <img loading="lazy" src="assets/images/Mechanical-4.png" alt=""
+                                        class="material_icon">
+                                </label>
+
+                                <label class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Mechanical" id="radio-53" value="Radio" data-name="Radio 53"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (click)="selectMechanical('Drivetrain')">
+                                    <span class="material_label w-form-label" for="radio-53">Drivetrain</span>
+                                    <img loading="lazy" src="assets/images/Mechanical-3.png" alt=""
+                                        class="material_icon">
+                                </label>
+
+                                <label class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Mechanical" id="radio-54" value="Radio" data-name="Radio 54"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (click)="selectMechanical('Exhaust')">
+                                    <span class="material_label w-form-label" for="radio-54">Exhaust </span>
+                                    <img loading="lazy" src="assets/images/Mechanical-7.png" alt=""
+                                        class="material_icon">
+                                </label>
+
+                                <label class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Mechanical" id="radio-55" value="Radio" data-name="Radio 55"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (click)="selectMechanical('Interior')">
+                                    <span class="material_label w-form-label" for="radio-55">Interior</span>
+                                    <img loading="lazy" src="assets/images/Mechanical-8.png" alt=""
+                                        class="material_icon">
+                                </label>
+
+                                <label class="filter_radio vertical_flex w-radio">
+                                    <input type="radio" name="Mechanical" id="radio-56" value="Radio" data-name="Radio 56"
+                                        class="w-form-formradioinput radio-circle w-radio-input" (click)="selectMechanical('Miscellaneous')">
+                                    <span class="material_label w-form-label" for="radio-56">miscellaneous</span>
+                                    <img loading="lazy" src="assets/images/Mechanical-1.png" alt=""
+                                        class="material_icon">
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="scan_div" [hidden]="!showUploadDamagesImage">
+                            <img loading="lazy" src="assets/images/camera_1camera.png" alt="" class="material_icon">
+                            <div class="scan_text">Take / Upload Photo Of Cosmetic Damage</div>
+                            <input type="file" class="scan_input_field w-input" maxlength="256" name="field-3" 
+                                data-name="Field 3" (change)="handleUpload($event,'damages')">
+                        </div>
+
+                        <div class="image_preview" [hidden]="!showUploadDamagesImagePreview">
+                            <img loading="lazy"
+                                src="{{previewDamageImage}}"
+                                alt="" class="preview_image recon">
+                            <div class="buttons_recon" [hidden]="!previewImageButton">
+                                <input type="submit" value="Cancel" (click)="cancelPreviewImage()" data-wait="Please wait..."
+                                    class="main_button_blue-2 w-button">
+                              
+                                <div class="button-input">
+                                    <input type="submit" value="Re-Take" data-wait="Please wait..." class="main_button_blue-2 w-button">
+                                    <input type="file"  (change)="handleUpload($event,'damages')" class="input_full w-input" >
+                                </div>
+                                <input type="submit" (click)="confirmDamageImage()" value="Confirm" data-wait="Please wait..."
+                                    class="main_button_blue-2 w-button">
+                            </div>
+                        </div>
+
+                        <div class="split_div" [hidden]="!showDamagesFrom">
+                            <div class="drop_down_holder_recon">
+
+                                <label for="email" class="input_tag">Location </label>
+                                <select [(ngModel)]="selecteDamageLocation" (change)="selectDamageLocation()" name="field-12" data-name="field" required=""
+                                    class="input_fields_tagged w-select">
+                                    <option value="0">Front</option>
+                                    <option value="1">Left</option>
+                                    <option value="4">Right</option>
+                                    <option value="3">Rear</option>
+                                    <option value="2">Top </option>
+                                </select>
+                                <div class="message_div" [hidden]="!showLocationError"><div >Please Select Location</div> </div>
+                                <label for="email" class="input_tag">Area</label>
+                                <select id="field-12" name="field-12" data-name="field" [(ngModel)]="selectedArea"
+                                    class="input_fields_tagged w-select">
+                                    <option *ngFor="let area of damageAreas" [value]="area" >{{area}}</option>
+                                  
+                                </select>
+                                <div class="message_div" [hidden]="!showAreaError"><div >Please Select Area</div> </div>
+                                <label for="email" class="input_tag">Type</label>
+                                <select id="field-12" name="field-12" data-name="field" [(ngModel)]="selectedType"
+                                    class="input_fields_tagged w-select">
+                                    <option value="">Chip</option>
+                                    <option value="Crack">Crack</option>
+                                    <option value="Cut">Cut</option>
+                                    <option value="Defect">Defect</option>
+                                    <option value="Dent">Dent</option>
+                                    <option value="Scratch">Scratch</option>
+                                    <option value="Missing Item">Missing Item</option>
+                                </select>
+
+                                
+
+                            </div>
+                        </div>
+
+                        <div class="split_div" [hidden]="!showDamagesPrice">
+                            <div class="drop_down_holder_recon">
+                            <label for="email" class="input_tag">Repair Estimate</label>
+                            <div class="input_split_div">
+                                <div class="unit_div_reversed no_start">
+                                    <div class="text-block-9">R</div>
+                                </div>
+                                <input type="number" [(ngModel)]="damagePrice" class="input_fields_normal no_rounded_reversed w-input"
+                                    maxlength="256" name="name-3" data-name="Name 3" >
+                            </div>
+                            <div class="message_div" [hidden]="!showdamagePriceError"><div >Please Enter damage Price</div> </div>
+                            <label for="field-11" class="input_tag">Description</label>
+                            <textarea [(ngModel)]="damageDescription"  name="damage Description" maxlength="5000"  class="input_fields_tagged w-input">
+
+                            </textarea>
+                           
+                        </div>
+                        </div>
+
+                        <div class="pagination_div w-clearfix" [hidden]="!showAddDamagesPagination">
+                            <input type="submit" value="Cancel" data-wait="Please wait..." (click)="cancelAddDamages()"
+                                class="main_button_blue-2 w-button">
+                            <input type="submit" value="Add Damage" data-wait="Please wait..." [hidden]="!showAddDamageButton"
+                                class="main_button_blue-2 end w-button"
+                                (click)="saveVehicleDamages()">
+                        </div>
+
+                        <div class="pagination_div w-clearfix" [hidden]="!showMainDamagesPagination">
+                            <input type="submit" value="Back" data-wait="Please wait..."
+                                class="main_button_blue-2 w-button" (click)="backToStep(3)" >
+                            <input type="submit" value="Next: Photos" data-wait="Please wait..." (click)="moveToPhotos()"
+                                class="main_button_blue-2 end w-button">
+                        </div>
+
+                    </div>
+                    <div class="main_holder_div_padded" [hidden]="!showImages">
+                        <div class="heading_wrapper">
+                            <h1 class="main_heading">Photos</h1>
+                        </div>
+                        <div class="heading_wrapper"></div>
+                        <div class="w-layout-grid grid-15">
+                        <input type="submit" value="Mark As Main Image" data-wait="Please wait..." (click)="marksAsMainImage()"
+                            class="main_button_blue-2 margin_right w-button" [hidden]="!showMarkAsMainImage">
+                        <input type="submit" value="Delete Selected Images" [hidden]="!showDeleteImages" data-wait="Please wait..." (click)="deleteVehicleImages()"
+                            class="main_button_blue-2 margin_right w-button">
+
+                       
+
+                        <div id="w-node-_162ac1c7-5708-f62f-defc-ab209230fdcf-3e7e1144" class="button-input">
+                            <input type="submit" value="+ Add Photos" data-wait="Please wait..." class="main_button_blue-2 margin_right w-button">
+                            <input type="file" class="input_full w-input" multiple (change)="handleImageUploadFile($event)" id="field-14">
+                        </div>
+                    </div>
+                        <div class="flex_images w-clearfix">
+
+                            <div class="navigation_section">
+
+                                <div class="number_plate_icon bg_remove">
+                                    <img loading="lazy" src="assets/images/icon.png" alt="" class="image-78">
+                                    <div class="reg_plate_text">Remove Background</div>
+                                </div>
+
+                                <div class="number_plate_icon">
+                                    <img loading="lazy" src="assets/images/select_button-01.png" alt=""
+                                        class="image-78">
+                                    <div class="reg_plate_text">Remove Background</div>
+                                </div>
+
+                                <div class="custom_bkg">
+
+                                    <label class="w-checkbox normal_checkbox-2 not_floated">
+                                        <div
+                                            class="w-checkbox-input w-checkbox-input--inputType-custom check_box_styling-3">
+                                        </div>
+                                        <input type="checkbox" name="checkbox-5" id="trade_check" data-name="Checkbox 5"
+                                            style="opacity:0;position:absolute;z-index:-1">
+                                        <span class="check_label-2 w-form-label" for="checkbox-5">Use Custom
+                                            Background</span>
+                                    </label>
+
+                                    <input type="submit" value="Upload Image" data-wait="Please wait..."
+                                        class="main_button_blue-3 full_button w-button">
+                                    <img loading="lazy"
+                                        src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg"
+                                        alt="" class="image_preview_background">
+                                    <input type="submit" value="Remove Image" data-wait="Please wait..."
+                                        class="main_button_blue-3 full_button w-button">
+                                    <div class="button-input stretched">
+                                        <input type="submit" value="Change Image" data-wait="Please wait..."
+                                            class="main_button_blue-3 full_button no-margin w-button">
+                                        <input type="text" class="scan_input_field w-input" maxlength="256" 
+                                            name="field-9" data-name="Field 9" placeholder="Example Text" id="field-9"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="number_plate_icon">
+                                    <div class="reg_plate_text">
+                                        Please Subscribe to Remove Background Functionality in My Account
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="images-new">
+                                <div class="w-layout-grid grid_load">
+
+                                    <label *ngFor="let images of vehicle.vehicleImageList; index  as i" class="w-checkbox main_image_radio w-clearfix">
+                                        <img loading="lazy" src="{{images.IMAGEPATH}}" alt=""
+                                            class="vehicle_image_load">
+                                        <div *ngIf="images.IMAGEANGLE == 'Side view of the vehicle – right hand side'" class="main_tag">Main</div>
+                                        <input type="checkbox" name="vehiclePhotos"
+                                          (click)="selectedImage(i)"  class="w-checkbox-input radio_button_full">
+                                        <span class="radio_hidden w-form-label" for="checkbox-6"></span>
+                                    </label>
+
+                                  
+
+                                </div>
+                                <div class="message_div" [hidden]="!showMainImageError"><div> {{imageErrorMessage}}</div> </div>
+                            </div>
+
+                        </div>
+                        <div class="pagination_div w-clearfix">
+                            <input type="submit" value="Back" data-wait="Please wait..." (click)="backToStep(4)"
+                                class="main_button_blue-2 w-button">
+                            <input type="submit" value="Load Vehicle" data-wait="Please wait..."
+                              (click)="UpdateAddvehicles()"  class="main_button_blue-2 end w-button">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div  class="success-message w-form-done"></div>
+        <div class="error-message-2 w-form-fail"></div>
+    </div>
+
+    <div class="form_lading w-form" [hidden]="!showAdvertise">
+        <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" class="form_landing2">
+            <div class="advertise_div">
+                <div class="main_holder_div_padded">
+                    <div class="heading_wrapper">
+                        <div class="main_heading">Advertise Your Car</div>
+                    </div>
+                    <div class="ins_report_text blue">
+                        Your Car Will Be Advertised On All The Following Sites.
+                    </div>
+                    <div class="ins_report_text small">
+                        Please Note: All vehicles loaded go through a quality check before being advertised.
+                        Your vehicle will be activated within 24 hours of being loaded.
+                    </div>
+                    <div class="ad_block">
+                        <div class="w-layout-grid logos_grid">
+
+                            <a href="http://www.clickcars.co.za" target="_blank"
+                                class="affiliate_block click w-inline-block">
+                                <img loading="lazy" src="assets/images/Click-Car-2.png" alt=""
+                                    class="full_stretch-image">
+                            </a>
+
+                            <a href="http://www.cars2sell.co.za" target="_blank"
+                                class="affiliate_block cars w-inline-block">
+                                <img sizes="(max-width: 479px) 100vw, (max-width: 767px) 33vw, (max-width: 991px) 37vw, (max-width: 1279px) 40vw, (max-width: 1439px) 41vw, (max-width: 1919px) 43vw, 44vw"
+                                    srcset="assets/images/Cars2sell-Logo-01-p-500.png 500w, assets/images/Cars2sell-Logo-01-p-800.png 800w, assets/images/Cars2sell-Logo-01-p-1080.png 1080w, assets/images/Cars2sell-Logo-01-p-1600.png 1600w, assets/images/Cars2sell-Logo-01-p-2000.png 2000w, assets/images/Cars2sell-Logo-01-p-2600.png 2600w, assets/images/Cars2sell-Logo-01-p-3200.png 3200w, assets/images/Cars2sell-Logo-01.png 6669w"
+                                    src="assets/images/Cars2sell-Logo-01.png" loading="lazy" alt=""
+                                    class="full_stretch-image">
+                            </a>
+
+                            <a href="https://zambezicars.co.za/" target="_blank" class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/Zam.png" alt="" class="full_stretch-image">
+                            </a>
+
+                            <a href="https://bakkie2buy.co.za/" target="_blank"
+                                class="affiliate_block bakkie w-inline-block">
+                                <img loading="lazy" src="assets/images/bakkie-logo-white-01-01-01-p-500.png" alt=""
+                                    class="full_stretch-image small">
+                            </a>
+
+                            <a href="https://www.premiummobility.co.za/" target="_blank"
+                                class="affiliate_block premium w-inline-block">
+                                <img loading="lazy" src="assets/images/Premium.png" alt="" class="full_stretch-image">
+                            </a>
+
+                            <a href="https://www.vehiclesellers.co.za/" target="_blank"
+                                class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/VS.png" alt="" class="full_stretch-image">
+                            </a>
+
+                            <a href="https://cafewheels.co.za/" target="_blank" class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/Cafe-Wheels.png" alt=""
+                                    class="full_stretch-image">
+                            </a>
+
+                            <a href="https://mobility-online.co.za/" target="_blank"
+                                class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/MOB.png" alt="" class="full_stretch-image">
+                            </a>
+
+                            <a href="https://e-mobility-online.co.za/" target="_blank"
+                                class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/eM.png" alt="" class="full_stretch-image">
+                            </a>
+
+                            <a id="w-node-_77280175-1652-1cff-50d3-14f7f1c2b991-3e7e1144"
+                                href="https://tradeyourvehicle.co.za/" target="_blank"
+                                class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/Trade_.png" alt="" class="full_stretch-image">
+                            </a>
+
+                            <a href="https://valuevehicle.co.za/" target="_blank"
+                                class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/VV.png" alt="" class="full_stretch-image">
+                            </a>
+
+                            <a id="w-node-_77280175-1652-1cff-50d3-14f7f1c2b995-3e7e1144"
+                                href="https://www.urbanvehicle.co.za/" target="_blank"
+                                class="affiliate_block urban w-inline-block">
+                                <img loading="lazy" src="assets/images/UBV-logo-thicker-01.png" alt=""
+                                    class="full_stretch-image">
+                            </a>
+
+                            <a href="https://vehiclemax.co.za/" target="_blank"
+                                class="affiliate_block max w-inline-block">
+                                <img loading="lazy" src="assets/images/VEHICLE-MAX.png" alt=""
+                                    class="full_stretch-image">
+                            </a>
+
+                            <div id="w-node-_77280175-1652-1cff-50d3-14f7f1c2b999-3e7e1144" class="affiliate_block">
+                                <img loading="lazy" src="assets/images/Untitled-design-8.png" alt=""
+                                    class="full_stretch-image">
+                            </div>
+
+                            <a href="https://e-vehiclemobility.com/" target="_blank"
+                                class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/EVM-logo-01.png" alt=""
+                                    class="full_stretch-image">
+                            </a>
+
+                            <a href="#" class="affiliate_block w-inline-block">
+                                <img loading="lazy" src="assets/images/Veh-Bill.png" alt="" class="full_stretch-image">
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="input_wrapper w-clearfix">
+                        <label for="email" class="input_tag">Your Advertised Price</label>
+                        <label for="node" class="required_tag">* Required</label>
+                        <div class="input_split_div">
+                            <div class="unit_div_reversed tagged">
+                                <div>R</div>
+                            </div>
+                            <input type="text" class="input_fields_normal no_rounded_reversed w-input" maxlength="256"
+                                name="price" [(ngModel)]="vehicleAdvertisePrice">
+                        </div>
+                        <div class="message_div" [hidden]="!showAdvertisePriceError"><div >Please Enter Price</div> </div>
+                    </div>
+                    <div class="veh_info margined">
+                        <strong class="notification">* It is advisable to enter an Advertised Price between the Current Trade &amp; Retail Values of your Vehicle. <br><br>
+                        </strong><span>
+                        <strong class="make_bold_span">{{tradeCarInfor}}&nbsp; </strong></span>with <span>
+                            <strong class="make_bold_span">{{isNumber(tradeCarKM)}} km:</strong></span><strong class="bold-text-7">‍<br>
+                            </strong><span class="trade_retail_span">
+                                <strong class="trade_reatil_span">Trade Value: R {{isNumber(trade)}}
+                                    <br>Retail Value: R {{isNumber(retail)}}</strong>
+                            </span>
+                    </div>
+                    <div class="ins_report_text small">
+                        * Please double check Your E-Mail Address and Contact Number under your Profile Page as
+                        Lead Information will be sent to these contact methods.
+                    </div>
+                    <div class="pagination_div w-clearfix">
+                        <input type="submit" value="Advertise" data-wait="Please wait..." (click)="submitVehicleAdvertisePrice()"
+                            class="main_button_blue-2 end w-button">
+                        <input type="submit" value="Cancel" data-wait="Please wait..." (click)="cancelAdvertisingVehicle()"
+                            class="main_button_blue-2 w-button">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="success-message w-form-done"></div>
+        <div class="error-message-2 w-form-fail"></div>
+    </div>
+
+</div>

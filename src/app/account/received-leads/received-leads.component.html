@@ -1,0 +1,58 @@
+<div class="tab_pane_acc w-tab-pane w--tab-active" id="received_lead">
+    <!-- start received leads -->
+    <div class="table_holder-2" *ngIf="leadsLength>0;else noLeads">
+        <div class="w-layout-grid table_leads"
+            *ngFor="let lead of leads | paginate: { itemsPerPage: 8, currentPage: p , totalItems: totalLength} ; index as i"
+            id="received_leads">
+
+            <div *ngIf="i == 0" class="heading_table_header-3">
+                <div>Name</div>
+            </div>
+            <div *ngIf="i == 0" class="heading_table_header-3">
+                <div>Surname</div>
+            </div>
+            <div *ngIf="i == 0" class="heading_table_header-3">
+                <div>Contact No.</div>
+            </div>
+            <div *ngIf="i == 0" class="heading_table_header-3">
+                <div>E-Mail</div>
+            </div>
+            <div *ngIf="i == 0" class="heading_table_header-3">
+                <div>Vehicle</div>
+            </div>
+
+            <div id="w-node-cff0b945-8890-b1bd-9dce-40aa570a4929-3e7e1144" class="heading_table-2">
+                <div class="deal_inner_text-2">{{ lead.NAME }} </div>
+            </div>
+            <div id="w-node-cff0b945-8890-b1bd-9dce-40aa570a492c-3e7e1144" class="heading_table-2">
+                <div class="deal_inner_text-2">{{ lead.SURNAME }}</div>
+            </div>
+            <div id="w-node-_486fbf10-59b7-5fa2-1488-77f96fb6193f-3e7e1144" class="heading_table-2">
+                <div class="deal_inner_text-2">{{lead.PHONE}} </div>
+            </div>
+            <div id="w-node-cff0b945-8890-b1bd-9dce-40aa570a492f-3e7e1144" class="heading_table-2">
+                <div class="deal_inner_text-2">{{lead.EMAIL}}</div>
+            </div>
+            <div id="w-node-cff0b945-8890-b1bd-9dce-40aa570a4926-3e7e1144" class="heading_table-2">
+                <a href="#" class="deal_inner_text-2 bold">{{lead.VEHICLE}}</a>
+            </div>
+
+        </div>
+        <div class="buttons_pagination">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
+    </div>
+    <!-- end received leads -->
+
+    <!-- start no leads -->
+    <ng-template #noLeads>
+        <a href="#" class="new_vehicle_add full w-inline-block">
+            <div class="add_car_div">
+                <h1 class="heading_nodata">No Leads Received Yet. <br>We Will Send You An E-Mail When A Lead Arrives.
+                </h1>
+            </div>
+        </a>
+    </ng-template>
+    <!-- end no leads -->
+
+</div>

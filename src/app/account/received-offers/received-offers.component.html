@@ -1,0 +1,194 @@
+<div class="tab_pane_acc w-tab-pane w--tab-active" id="received_offer">
+    <!-- start received offers -->
+    <div class="form-block-25 w-form" id="receive_offer" *ngIf="offersLength>0;else noOffers">
+        <form id="email-form-5" name="email-form-5" data-name="Email Form 5" method="get">
+            <div class="table_holder-2">
+                <div class="w-layout-grid table_deal_grid_new" id="received_offers"
+                    *ngFor="let offer of offers | paginate: { itemsPerPage: 8, currentPage: p , totalItems: totalLength} ; index as i">
+                    <div *ngIf="i == 0" class="heading_table_header-3">
+                        <div>Image</div>
+                    </div>
+                    <div *ngIf="i == 0" class="heading_table_header-3">
+                        <div>Vehicle</div>
+                    </div>
+                    <div *ngIf="i == 0" class="heading_table_header-3">
+                        <div>Year</div>
+                    </div>
+                    <div *ngIf="i == 0" class="heading_table_header-3">
+                        <div>Mileage </div>
+                    </div>
+                    <div *ngIf="i == 0" class="heading_table_header-3">
+                        <div>Highest Offer</div>
+                    </div>
+                    <div *ngIf="i == 0" class="heading_table_header-3">
+                        <div>Status</div>
+                    </div>
+                    <div *ngIf="i == 0" class="heading_table_header-3"></div>
+
+                    <!-- Received Offers -->
+                    <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03ba0-3e7e1144" class="heading_table-2">
+                        <img sizes="(max-width: 1279px) 66.65625px, (max-width: 1439px) 5vw, 80px"
+                            src="{{ offer.vehicleImages }}" loading="lazy" alt="" class="image_car_table">
+                    </div>
+
+                    <!-- MAKE -->
+                    <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03ba2-3e7e1144" class="heading_table-2">
+                        <a href="#" class="deal_inner_text-2 bold">{{ offer.MAKE }}</a>
+                    </div>
+
+                    <!-- YEAR -->
+                    <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03ba8-3e7e1144" class="heading_table-2">
+                        <div class="deal_inner_text-2">{{ offer.YEAR }}</div>
+                    </div>
+
+                    <!-- MILEAGE -->
+                    <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03bab-3e7e1144" class="heading_table-2">
+                        <div class="deal_inner_text-2">{{ offer.MILEAGE }} km</div>
+                    </div>
+
+                    <!-- OFFER -->
+                    <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03bae-3e7e1144" class="heading_table-2">
+
+                        <ng-container *ngIf="offer.STARTSTATUS == 1 && offer.ENDSTATUS == 0;else secondCase">
+                            <div class="deal_inner_text-2">
+                                --
+                            </div>
+
+                            <ng-container
+                                *ngIf="offer.OfferAccepted != 'False' && offer.OfferAccepted != 'True';else secondCased">
+                                <a (click)="acceptOffer(offer.VehicleID)" class="small_button accept">Accept</a>
+                                <a (click)="declineOffer(offer.VehicleID)" class="small_button decline">Decline</a>
+                            </ng-container>
+
+                            <ng-template #secondCased>
+                                <ng-container *ngIf="offer.OfferAccepted == 'True';else thirdCased">
+                                    <button disabled class="small_button accept">Accepted</button>
+                                </ng-container>
+                            </ng-template>
+
+                            <ng-template #thirdCased>
+                                <button disabled class="small_button decline">Declined</button>
+                            </ng-template>
+
+                        </ng-container>
+
+                        <ng-template #secondCase>
+                            <ng-container
+                                *ngIf="offer.STARTSTATUS == 1 && offer.ENDSTATUS == 1 && offer.OFFER == 0;else thirdCase">
+                                <div class="deal_inner_text-2">
+                                    No Offer
+                                </div>
+                                <ng-container
+                                    *ngIf="offer.PendingAuction==1 && offer.vehicleAuctioned==1;else relistSecond">
+                                    <button disabled class="small_button">Pending Re-List</button>
+                                </ng-container>
+                                <ng-template #relistSecond>
+                                    <a (click)="requestRelist(offer.VehicleID)" class="small_button">Request Re-List</a>
+                                </ng-template>
+                            </ng-container>
+                        </ng-template>
+
+                        <ng-template #thirdCase>
+                            <div class="deal_inner_text-2">
+                                R {{ offer.OFFER }}
+                            </div>
+                            <ng-container
+                                *ngIf="offer.OfferAccepted != 'False' && offer.OfferAccepted != 'True';else secondCasedd">
+                                <a (click)="acceptOffer(offer.VehicleID)" class="small_button accept">Accept</a>
+                                <a (click)="declineOffer(offer.VehicleID)" class="small_button decline">Decline</a>
+                            </ng-container>
+
+                            <ng-template #secondCasedd>
+                                <ng-container *ngIf="offer.OfferAccepted == 'True';else thirdCasedd">
+                                    <button disabled class="small_button accept">Accepted</button>
+                                </ng-container>
+                            </ng-template>
+
+                            <ng-template #thirdCasedd>
+                                <button disabled class="small_button decline">Declined</button>
+                            </ng-template>
+                        </ng-template>
+
+                    </div>
+
+                    <ng-container *ngIf="offer.STARTSTATUS == 1 && offer.ENDSTATUS == 0;else secondCases">
+                        <!-- Auction Running -->
+                        <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03bb1-3e7e1144" class="heading_table-2">
+                            <div class="rounded_text grey">Auction Running</div>
+                        </div>
+                    </ng-container>
+
+                    <ng-template #secondCases>
+                        <ng-container
+                            *ngIf="offer.STARTSTATUS == 1 && offer.ENDSTATUS == 1 && offer.OFFER == 0;else thirdCases">
+                            <!-- ✓ Auction Finished -->
+                            <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03c20-3e7e1144" class="heading_table-2">
+                                <div class="rounded_text">✓ Auction Finished</div>
+                            </div>
+                        </ng-container>
+                    </ng-template>
+
+                    <ng-template #thirdCases>
+                        <!-- Auction Not Started -->
+                        <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03c20-3e7e1144" class="heading_table-2">
+                            <div class="rounded_text">Auction Not Started</div>
+                        </div>
+                    </ng-template>
+
+                    <!-- Auction Log -->
+                    <div id="w-node-_354aa6ca-a9c7-9ca8-b95b-d77701b03bb6-3e7e1144" class="heading_table-2">
+                        <a (click)="seeAuctionLog(offer.VehicleID)" class="database_button edit_advertised w-button">See
+                            Auction Log</a>
+                    </div>
+
+                </div>
+                <div class="buttons_pagination">
+                    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <!-- end received offers -->
+
+    <!-- start car -->
+    <div class="bidlog_holder" style="display:none;" id="auctionLog">
+        <div class="main_holder_div_padded" *ngFor="let aucLogs of seeAuctionLogs; index as i">
+            <div class="heading_wrapper">
+                <div class="main_heading">{{ aucLogs.vehicle}}</div>
+            </div>
+            <div class="table_holder">
+                <div class="w-layout-grid grid_bid_log">
+                    <div id="w-node-_4c9265ff-1bc4-37b3-e8dc-4ecb09951351-3e7e1144" class="grid_head_left"
+                        *ngIf="i == 0">
+                        <div>Dealer</div>
+                    </div>
+                    <div class="heading_table_header-3 right" *ngIf="i == 0">
+                        <div>Offer Made</div>
+                    </div>
+                    <div id="w-node-_4c9265ff-1bc4-37b3-e8dc-4ecb09951363-3e7e1144" class="heading_table-2 left">
+                        <a class="deal_inner_text-2 bold">Dealer ID: {{ aucLogs.DealerID }}</a>
+                    </div>
+                    <div id="w-node-_4c9265ff-1bc4-37b3-e8dc-4ecb09951366-3e7e1144" class="heading_table-2 right">
+                        <div class="deal_inner_text-2">R {{ aucLogs.PRICE }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination_div">
+                <a (click)="closeLog()" class="main_button_blue-2 w-button">Close</a>
+            </div>
+        </div>
+    </div>
+    <!-- end car -->
+
+    <!-- start no vehicles added to auction -->
+    <ng-template #noOffers>
+        <a href="#" class="new_vehicle_add full w-inline-block">
+            <div class="add_car_div">
+                <h1 class="heading_nodata">No Vehicles Added To Auction</h1>
+            </div>
+        </a>
+    </ng-template>
+    <!-- end no vehicles added to auction -->
+
+</div>

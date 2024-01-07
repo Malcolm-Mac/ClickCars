@@ -1,0 +1,156 @@
+<div class="tab_pane_acc w-tab-pane w--tab-active">
+    <div class="form_standard w-form">
+        <form id="email-form-4" name="email-form-4" data-name="Email Form 4" method="get" class="form_standard_inner">
+            <div class="w-layout-grid standard_cx_grid" id="userDetail">
+                <div id="w-node-_85741a5d-6064-a44e-f7aa-c0c167be181b-3e7e1144" class="inner_div_cust">
+                    <a style="display:none;" class="main_button page_end w-button openSuccess">Password Was
+                        Changed Successfully</a>
+                    <!-- start profile picture -->
+                    <div class="profile_pic">
+                        <img id="InterestImage"
+                            sizes="(max-width: 479px) 100vw, (max-width: 767px) 100px, (max-width: 991px) 125px, 150px"
+                            [src]="image" loading="lazy" alt="" class="profile_picture">
+
+                        <!-- <input type="file" style="display:none;" (change)="previewImage()"
+                            class="main_button page_end w-button" maxlength="256" name="field-11" data-name="Field 11"
+                            placeholder="Example Text" id="InterestFile"> -->
+
+                       
+                        <div class="profile_div"  id="imagefile" style="display:none;">
+                            <a href="#" class="main_button page_end w-button">Change Profile Picture</a>
+                            <input type="file" class="input_full w-input" (change)="previewImage()"  id="InterestFile">
+                          </div>
+
+                    </div>
+                    <!-- end profile picture -->
+
+                    <!-- start edit profile -->
+                    <div class="customer_heading_div">
+                        <div class="customer_heading">
+                            <strong>Your Details</strong>
+                        </div>
+                        <a (click)="editProfile()" id="edit" class="main_button edit w-button">Edit</a>
+                        <a (click)="saveProfile()" id="save" class="main_button edit w-button">Save</a>
+                    </div>
+                    <!-- end edit profile -->
+
+                    <!-- start name -->
+                    <label for="Name-4" class="input_tag">Name</label>
+                    <input type="text" class="input_fields_tagged w-input" maxlength="256" name="name"
+                        [(ngModel)]="name" data-name="Name 4" placeholder="" id="name" disabled>
+                    <div class="message_div" [hidden]="!showNameError">
+                        <div>Please Enter Name</div>
+                    </div>
+                    <!-- end name -->
+
+                    <!-- start surname -->
+                    <label for="email" class="input_tag">Surname</label>
+                    <input type="text" class="input_fields_tagged w-input" maxlength="256" name="surname"
+                        [(ngModel)]="surname" data-name="Name 7" placeholder="" id="surname" disabled>
+                    <div class="message_div" [hidden]="!showSurnameError">
+                        <div>Please Enter Surname</div>
+                    </div>
+                    <!-- end surname -->
+
+                    <!-- start email -->
+                    <label for="email" class="input_tag">E-Mail</label>
+                    <input type="email" class="input_fields_tagged w-input" maxlength="256" name="email"
+                        [(ngModel)]="email" data-name="E Mail" placeholder="" id="email" disabled>
+                    <div class="message_div" [hidden]="!showEmailError">
+                        <div>Please Enter Email Address</div>
+                    </div>
+                    <!-- end email -->
+
+                    <!-- start contact number -->
+                    <label for="email" class="input_tag">Contact Number</label>
+                    <input type="tel" class="input_fields_tagged w-input" maxlength="13" name="contact"
+                        [(ngModel)]="contact" data-name="Contact Number" placeholder="" id="contact" disabled>
+                    <div class="message_div" [hidden]="!showContactError">
+                        <div>Please Enter Contact Number</div>
+                    </div>
+                    <!-- end contact number -->
+
+                    <a (click)="passwordReset()" class="nav_link smaller_button" data-ix="link-hover">Password Reset</a>
+
+                </div>
+            </div>
+
+            <!-- start reset code -->
+            <div class="w-layout-grid standard_cx_grid" id="resetCode">
+                <div id="w-node-_5e0c7b07-2399-36f9-2af6-9bfb8bd34b23-3e7e1144" class="inner_div_cust">
+                    <div class="customer_heading_div">
+                        <div class="customer_heading">
+                            <strong>Reset Code Has Been Sent to
+                                <a class="email" href="mailto:">
+                                    {{ email }}
+                                </a>
+                            </strong>
+                            <a href="mailto:" style="display:none;"
+                                class="main_button page_end w-button openEmail">Reset Code Was Successfully Sent</a>
+                        </div>
+                    </div>
+                    <label for="Name-4" class="input_tag">Reset Code</label>
+                    <input type="text" class="input_fields_tagged w-input" [(ngModel)]="code" maxlength="256"
+                        name="code" data-name="Name 4" placeholder="" id="code">
+                    <div class="message_div" [hidden]="!showResetCodeError">
+                        <div>Please Enter Reset Code</div>
+                    </div>
+                    <div class="message_div" [hidden]="!showIncorrectCodeError">
+                        <div>Reset Code Invalid</div>
+                    </div>
+                    <a (click)="confirmPasswordCode()" class="nav_link smaller_button" data-ix="link-hover">Next</a>
+                </div>
+            </div>
+            <!-- end reset code -->
+
+            <!-- start set password -->
+            <div class="w-layout-grid standard_cx_grid" id="setCode">
+                <div id="w-node-e082010a-986a-ccf6-2a51-3b76ad6a991d-3e7e1144" class="inner_div_cust">
+
+                    <div class="customer_heading_div">
+                        <div class="customer_heading">
+                            <strong>Set Password</strong>
+                            <a style="display:none;" class="main_button page_end w-button openSuccess">You are a click
+                                away</a>
+                        </div>
+                    </div>
+
+                    <!-- start New Password -->
+                    <label for="Name-4" class="input_tag">New Password</label>
+                    <input type="password" class="input_fields_tagged w-input" maxlength="256" [(ngModel)]="newPassword"
+                        name="newPassword" data-name="Name 4" placeholder="" id="newPassword">
+
+                    <div class="message_div" [hidden]="!showPasswordError">
+                        <div>Please Enter Password</div>
+                    </div>
+
+                    <div class="message_div" [hidden]="!showPasswordMatchError">
+                        <div>Password Does Not Match</div>
+                    </div>
+
+                    <!-- end New Password -->
+
+                    <!-- start Confirm New Password -->
+                    <label for="Name-8" class="input_tag">Confirm New Password</label>
+                    <input type="password" class="input_fields_tagged w-input" maxlength="256"
+                        [(ngModel)]="confirmPassword" name="confirmPassword" data-name="Name 4" placeholder=""
+                        id="confirmPassword">
+
+                    <div class="message_div" [hidden]="!showCPasswordError">
+                        <div>Please Enter Confirm New Password</div>
+                    </div>
+
+                    <div class="message_div" [hidden]="!showPasswordMatchError">
+                        <div>Password Does Not Match</div>
+                    </div>
+
+                    <!-- end Confirm New Password -->
+
+                    <a (click)="resetPassword()" class="nav_link smaller_button" data-ix="link-hover">Set Password</a>
+                </div>
+            </div>
+            <!-- end set password -->
+
+        </form>
+    </div>
+</div>

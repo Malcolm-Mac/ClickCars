@@ -1,0 +1,334 @@
+<div class="body_filter_mobile w-clearfix wf-section">
+  <div class="body_div_1400"></div>
+  <a [hidden]="delearFilter" (click)="openfilter()" class="filter_mobile_button w-button"
+    data-ix="show-mobile-filter">View Filters</a>
+  <div class="filter_form w-form">
+    <form id="email-form" name="email-form" data-name="Email Form">
+      <div class="bottom_filter_div w-clearfix">
+        <input type="text" [(ngModel)]="searchInput" class="quick_search_mob w-input" maxlength="256" name="searchInput"
+          data-name="Field 2" data-ix="link-hover" placeholder="Search Make, Model or Keyword" id="field-2">
+      </div>
+    </form>
+  </div>
+</div>
+<div [hidden]="delearFilter" class="body_section_grey_filter w-clearfix wf-section">
+  <div class="body_div_1400">
+    <div class="filter_form w-form">
+      <form id="email-form" name="email-form" data-name="Email Form">
+        <div class="w-layout-grid filter_grid">
+          <div class="drop_holder max_width">
+            <div (click)="showOption('make')" id="makeDi" class="dropdown_filter margin" data-ix="link-hover">
+              <div class="drop_text">{{filterOption.make}} </div>
+              <div class="drop_arrow">
+                <img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                  srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                  alt="" class="arrow_icon">
+              </div>
+            </div>
+            <div class="drop_list_main _3" id="makeDiv">
+              <a (click)="filterBy('make','All Makes')" class="drop_link line">All Makes</a>
+              <a *ngFor="let name of makes" (click)="filterBy('make',name)" class="drop_link line">{{name}}</a>
+            </div>
+          </div>
+          <div class="drop_holder max_width">
+            <div class="dropdown_filter margin" id="modelDi" (click)="showOption('model')" data-ix="link-hover">
+              <div class="drop_text">{{filterOption.model}}</div>
+              <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                  srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                  alt="" class="arrow_icon"></div>
+            </div>
+            <div id="modelDiv" class="drop_list_main _3">
+              <a (click)="filterBy('model','All Models')" class="drop_link line">All Models</a>
+              <a *ngFor="let modelType of model" (click)="filterBy('model',modelType)"
+                class="drop_link line">{{modelType}}</a>
+
+            </div>
+          </div>
+          <div class="split_drop">
+            <div class="drop_holder max_width">
+              <div (click)="showOption('minYear')" id="minYearDi" class="dropdown_filter left" data-ix="link-hover">
+                <div class="drop_text">{{filterOption.minYear}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="minYearDiv" class="drop_list_main _3">
+                <a (click)="filterBy('minYear','Min Year')" class="drop_link line">Min Year</a>
+                <a *ngFor="let minYear of minYears" (click)="filterBy('minYear',minYear)"
+                  class="drop_link line">{{minYear}}</a>
+
+
+              </div>
+            </div>
+            <div class="drop_holder max_width">
+              <div (click)="showOption('maxYear')" id="maxYearDi" class="dropdown_filter right" data-ix="link-hover">
+                <div class="drop_text">{{filterOption.maxYear}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="maxYearDiv" class="drop_list_main _3">
+                <a (click)="filterBy('maxYear','Max Year')" class="drop_link line">Max Year</a>
+                <a *ngFor="let maxYearsType of maxYears" (click)="filterBy('maxYear',maxYearsType)"
+                  class="drop_link line">{{maxYearsType}}</a>
+
+              </div>
+            </div>
+          </div>
+          <div class="split_drop">
+            <div class="drop_holder max_width">
+              <div (click)="showOption('minPrice')" id="minPriceDi" class="dropdown_filter left" data-ix="link-hover">
+                <div class="drop_text">{{filterOption.minPrice}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="minPriceDiv" class="drop_list_main _3">
+                <a (click)="filterBy('minPrice','Min Price')" class="drop_link line">Min Price</a>
+                <a *ngFor="let minPriceType of minPrice" (click)="filterBy('minPrice',minPriceType)"
+                  class="drop_link line">{{minPriceType}}</a>
+              </div>
+            </div>
+            <div class="drop_holder max_width">
+              <div (click)="showOption('maxPrice')" id="maxPriceDi" class="dropdown_filter right" data-ix="link-hover">
+                <div class="drop_text">{{filterOption.maxPrice}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="maxPriceDiv" class="drop_list_main _3">
+                <a (click)="filterBy('maxPrice','Max Price')" class="drop_link line">Max Price</a>
+                <a *ngFor="let maxPriceType of maxPrice" (click)="filterBy('maxPrice',maxPriceType)"
+                  class="drop_link line">{{maxPriceType}}</a>
+
+              </div>
+            </div>
+          </div>
+          <div class="split_drop">
+            <div class="drop_holder max_width">
+              <div (click)="showOption('minKM')" id="minKMDi" class="dropdown_filter left" data-ix="link-hover">
+                <div class="drop_text">{{filterOption.minKM}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="minKMDiv" class="drop_list_main _3">
+                <a (click)="filterBy('minKM','Min KM')" class="drop_link line">Min KM</a>
+                <a *ngFor="let min of minKm" (click)="filterBy('minKM',min)" class="drop_link line">{{min}}</a>
+
+              </div>
+            </div>
+            <div class="drop_holder max_width">
+              <div (click)="showOption('maxKM')" id="maxKMDi" class="dropdown_filter right" data-ix="link-hover">
+                <div class="drop_text">{{filterOption.maxKM}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="maxKMDiv" class="drop_list_main _3">
+                <a (click)="filterBy('maxKM','Max KM')" class="drop_link line">Max KM</a>
+                <a *ngFor="let max of maxKM" (click)="filterBy('maxKM',max)" class="drop_link line">{{max}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="drop_holder max_width">
+            <div (click)="showOption('bodytype')" id="bodyTypeDi" class="dropdown_filter margin" data-ix="link-hover">
+              <div class="drop_text">{{filterOption.bodyType}}</div>
+              <div class="drop_arrow">
+                <img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                  srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                  alt="" class="arrow_icon">
+              </div>
+            </div>
+            <div id="bodyTypeDiv" class="drop_list_main _3">
+              <a (click)="filterBy('bodytype','Body Types')" class="drop_link line"> Body Types</a>
+              <a *ngFor="let body of BodyType; let last = last" (click)="filterBy('bodytype',body.index)"
+                [ngClass]="{'drop_link-2':true ,'line':true}" class="drop_link line"> {{body.body}}</a>
+
+            </div>
+          </div>
+          <div class="split_drop">
+            <div class="drop_holder max_width">
+              <div (click)="showOption('fuel')" id="fuelDi" class="dropdown_filter left" data-ix="link-hover">
+                <div class="drop_text">{{filterOption.FuelType}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="fuelDiv" class="drop_list_main _3">
+                <a (click)="filterBy('fuel','Fuel Types')" class="drop_link line">Fuel Types</a>
+                <a *ngFor="let fuel of FuelType" (click)="filterBy('fuel',fuel)" class="drop_link line">{{fuel}}</a>
+
+              </div>
+            </div>
+            <div class="drop_holder max_width">
+              <div (click)="showOption('transmission')" id="transmissionDi" class="dropdown_filter right"
+                data-ix="link-hover">
+                <div class="drop_text">{{filterOption.maxKM}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="transmissionDiv" class="drop_list_main _3">
+                <a (click)="filterBy('transmission','Transmission')" class="drop_link line">Transmission</a>
+                <a (click)="filterBy('transmission','Automatic')" class="drop_link line">Automatic</a>
+                <a (click)="filterBy('transmission','Manual')" class="drop_link line">Manual</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="drop_holder max_width">
+            <div (click)="showOption('color')" id="colorDi" class="dropdown_filter margin" data-ix="link-hover">
+              <div class="drop_text">{{filterOption.color}}</div>
+              <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 2vw, 15px"
+                  srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                  alt="" class="arrow_icon"></div>
+            </div>
+            <div id="colorDiv" class="drop_list_main _3">
+              <a (click)="filterBy('color','Colour')" class="drop_link line">Colour</a>
+              <a *ngFor="let colortype of colors" (click)="filterBy('color',colortype)"
+                class="drop_link line">{{colortype}}</a>
+            </div>
+          </div>
+        </div>
+        <div class="bottom_filter_div w-clearfix">
+          <a (click)="clearSearch()" class="main_button_new clear_filters w-button" data-ix="link-hover">Clear
+            Filters</a>
+          <form id="KeywordForms" data-name="Email Form">
+            <input type="text" class="quick_search w-input" [(ngModel)]="searchInput" maxlength="256" name="searchInput"
+              data-name="Name 7" placeholder="Search by Make Model Or  Keyword" id="Keyword" data-ix="link-hover"
+              (keyup)="onKey($event)">
+          </form>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+  <a (click)="closefilter()" class="filter_mobile_button_apply w-button" data-ix="hide-mobile-filter">Close &amp; Apply
+    Filters</a>
+</div>
+<div [hidden]="!delearFilter" class="body_dealer_section wf-section">
+  <div class="dealership_info_div" *ngIf="dealerData !=null">
+    <img src="{{dealerData.LOGO}}" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 150px, 200px"
+      class="dealer_logo_top">
+    <div class="dealer_info_div">
+      <h1 class="heading_dealership">{{dealerData.DEALERNAME}}</h1>
+      <h2 class="sub_heading_dealer">{{vehicleData.length}} Cars In Stock</h2>
+    </div>
+    <div class="div-block-4">
+      <a class="trackContact" (click)="revelNumber('Phone',dealerData.TELEPHONENUMBER)"
+        [href]="returnHrefNumber ? 'tel:'+showwNumberDeatails : 'javascript:void(0)'">
+        <h1 class="page_headings dealer_number_div">
+          {{showwNumberDeatails}}
+        </h1>
+      </a>
+      <a class="trackContact" (click)="revelNumber('Email',dealerData.DEALEREMAIL)"
+        [href]="returnHrefEmail ? 'mailto:'+showEmailDetails : 'javascript:void(0)'">
+        <h1 class="page_headings dealer_number_div">
+          {{showEmailDetails}}
+        </h1>
+      </a>
+      <div class="address_dealer">{{dealerData.STREET1}}</div>
+    </div>
+  </div>
+</div>
+<div class="body_section_white wf-section" id="topPage">
+  <div class="body_div_1400">
+    <div>
+      <div class="form-block-2 w-form">
+        <form id="email-form-2" name="email-form-2" data-name="Email Form 2" class="listing_form">
+          <div class="listing_top_left">
+            <div class="text_sort">Sort By:</div>
+            <div class="drop_holder max_width">
+              <div (click)="viewSort()" id="sortBYDi" class="dropdown_filter margin" data-ix="link-hover">
+                <div class="drop_text">{{sortBY}}</div>
+                <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy"
+                    sizes="(max-width: 767px) 15px, (max-width: 991px) 2vw, 15px"
+                    srcset="assets/images/toppng.com-arrow-down-icon-625x362.png 500w, assets/images/toppng.com-arrow-down-icon-625x362.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                    alt="" class="arrow_icon"></div>
+              </div>
+              <div id="sortBYDiv" class="drop_list_main _3">
+                <a (click)="sortByFunction('MostRelevant','Default: Most Relevant')" class="drop_link line">Default:
+                  Most Relevant</a>
+                <a (click)="sortByFunction('Date','Date Listed: Newest')" class="drop_link line">Date Listed: Newest</a>
+                <a (click)="sortByFunction('PriceLow','Price: Low to High')" class="drop_link line">Price: Low to
+                  High</a>
+                <a (click)="sortByFunction('PriceHigh','Price: High to Low')" class="drop_link line">Price: High to
+                  Low</a>
+                <a (click)="sortByFunction('MileageLow','Mileage: Low to High')" class="drop_link line">Mileage: Low to
+                  High</a>
+                <a (click)="sortByFunction('MileageHigh','Mileage: High to Low')" class="drop_link line">Mileage: High
+                  to Low</a>
+                <a (click)="sortByFunction('YearLow','Year: Low to High')" class="drop_link line">Year: Low to High</a>
+                <a (click)="sortByFunction('YearHigh','Year: High to Low')" class="drop_link">Year: High to Low</a>
+              </div>
+            </div>
+          </div>
+          <div class="listing_top_right">
+            <div class="view_div">
+              <div class="text_view">Choose View:</div>
+              <a href="#" class="view_link w-inline-block" data-ix="link-hover" (click)="changeview(true)">
+                <img src="assets/images/grid.png" loading="lazy" alt=""
+                  [ngClass]="{'view_image': true, 'active':viewGrid}"></a>
+            </div>
+            <a href="#" class="view_link list w-inline-block" data-ix="link-hover" (click)="changeview(false)">
+              <img src="assets/images/list.png" loading="lazy" alt=""
+                [ngClass]="{'view_image': true, 'active':!viewGrid}"></a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="listings_div w-clearfix">
+      <a (click)="navigateToVehicleDeatis(cars.VEHICLEID)"
+        *ngFor="let cars of vehicleData | searching:searchInput | paginate: { itemsPerPage: 12, currentPage: p , totalItems: totalLength}"
+        target="_blank"
+        [ngClass]="{'car_listing_main':grid, 'car_listing_main_list':!grid, 'w-inline-block':true, 'w-clearfix':true}"
+        data-ix="link-hover" style="transition: all 0.2s ease 0s;">
+        <div [ngClass]="{'listing_left':grid , 'listing_left_list':!grid}">
+          <img *ngIf="cars.vehicleImage " [src]="cars.vehicleImage" loading="lazy"
+            sizes="(max-width: 479px) 20vw, (max-width: 991px) 21vw, 20vw"
+            alt="Used {{cars.YEAR}} {{cars.MAKE}} {{cars.MODEL}} for Sale in South Africa from {{cars.DEALERNAME}}"
+            class="car_image_main">
+          <div class="absolute_dealer_logo small"
+            *ngIf="cars.LOGO !=null && cars.LOGO != 'https://e-dealerportal.co.za'">
+            <img src="{{cars.LOGO}}" loading="lazy" sizes="(max-width: 767px) 5vw, 6vw" class="dealer_logo small">
+          </div>
+        </div>
+        <div class="listing_middle">
+          <div [ngClass]="{'model_text':true, 'main_text':grid, 'list':!grid}">{{cars.MAKE}} {{cars.MODEL}}</div>
+          <div class="model_info_main">
+            <div class="year_model">{{cars.YEAR}}</div>
+            <div class="extras_info_text main">{{isNumber(cars.MILEAGE)}} km</div>
+            <div class="extras_info_text main">{{cars.TRANSMISSION}}</div>
+            <div class="extras_info_text main">{{cars.FUELTYPE}}</div>
+          </div>
+        </div>
+        <div class="listing_right">
+          <div class="price main">R {{isNumber(cars.PRICE)}}</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="buttons_pagination">
+      <!-- <a href="#" class="nav_link link_page_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">Next</a>
+        <a href="#" class="nav_link link_page_left" data-ix="link-hover" style="transition: all 0.2s ease 0s;">Previous</a> -->
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+    </div>
+  </div>
+</div>

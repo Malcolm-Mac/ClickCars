@@ -1,0 +1,38 @@
+<div class="body_section_white_details wf-section">
+    
+    <div class="body_div_1400_flex2">
+        <div class="about_left">
+            <h2 class="sub_heading_no_margin">Let&#x27;s Chat</h2>
+            <h1 class="page_headings_less_margin">Contact Us</h1>
+            <div class="finance_div_main">
+                <div class="w-form">
+                    <form id="email-form-3" name="email-form-3" data-name="Email Form 3" class="w-clearfix">
+                        
+                        <input type="text" [(ngModel)]="Name" class="input_blue w-input" maxlength="256" name="Name" data-name="Name 2" data-ix="link-hover" placeholder="Name" id="Name" >
+                        <div class="message_div" [hidden]="formObject.Name" ><div >Please Enter Name</div> </div>
+                        <input type="text" [(ngModel)]="Surname" class="input_blue w-input" maxlength="256" name="Surname" data-name="Surname 2" data-ix="link-hover" placeholder="Surname" id="Surname" >
+                        <div class="message_div" [hidden]="formObject.Surname" ><div >Please Enter Surname</div> </div>
+                        <input type="tel" [(ngModel)]="Contact" class="input_blue w-input" maxlength="10" name="Contact" data-name="Contact Number 2" data-ix="link-hover" placeholder="Contact Number" id="ContactNumber">
+                        <div class="message_div" [hidden]="formObject.ContactNumber"><div >Please Enter Contact</div> </div>
+                        <input type="email" [(ngModel)]="Email" class="input_blue w-input" maxlength="256" name="Email" data-name="E Mail 2" data-ix="link-hover" placeholder="E-Mail" id="Email" >
+                        <div class="message_div" [hidden]="formObject.Email"><div >Please Enter Email</div> </div>
+                        <textarea placeholder="Message" [(ngModel)]="Message" maxlength="5000" id="Message" name="Message" data-name="Message 2" class="input_blue w-input" data-ix="link-hover"></textarea>
+                        <div class="message_div" [hidden]="formObject.Message"><div >Please Enter Message</div> </div>
+                        <a (click)="SendContactMessages()" class="nav_link contact_us" data-ix="link-hover">Send Message</a>
+                   
+                    </form>
+                </div>
+                <h1 class="page_headings number_contact">
+                    <a href="tel:+27871356082" class="number_link_dark" data-ix="link-hover">087 <span
+                            class="orange_span">135 6082</span></a>
+                </h1>
+                <a href="mailto:info@e-dealerportal.co.za?subject=Website%20Enquiry" class="e-mail_dark"
+                    data-ix="link-hover">info@e-dealerportal.co.za</a>
+            </div>
+        </div>
+        <div class="contact_right"><img src="assets/images/contact-1.jpg" loading="lazy"
+                sizes="(max-width: 479px) 92vw, (max-width: 767px) 95vw, (max-width: 991px) 38vw, 35vw"
+                srcset="assets/images/contact-1-p-800.jpeg 800w, assets/images/contact-1.jpg 1028w"
+                alt="Purchase a used car in south africa." class="about_image"></div>
+    </div>
+</div>

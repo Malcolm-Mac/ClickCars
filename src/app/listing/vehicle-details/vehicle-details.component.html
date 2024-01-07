@@ -1,0 +1,461 @@
+<div class="body_section_white_details wf-section">
+    <div id="enquiry_form" class="enquiry_form">
+        <div (click)="CloseEnquire()" class="icon_back w-icon-slider-right" data-ix="hide-enquiry"></div>
+
+        <h1 class="enquiry_heading">
+            <span class="wrap_enquire">Send Enquiry</span> {{vehicleDetail.MAKE}} {{vehicleDetail.MODEL}}
+        </h1>
+
+        <div class="w-form">
+            <!--       <form id="email-form-3" name="email-form-3" data-name="Email Form 3">
+                <input type="text" class="input_orange w-input" maxlength="256" name="Name" data-name="Name"
+                    data-ix="link-hover" placeholder="Name" id="Name" >
+                    <div class="message_div" [hidden]="!showNameError"><div >Please Enter Name</div> </div>
+                <input type="text" class="input_orange w-input" maxlength="256" name="Surname" data-name="Surname"
+                    data-ix="link-hover" placeholder="Surname" id="Surname" >
+                    <div class="message_div" [hidden]="!showSurnameError"><div >Please Enter Surname</div> </div>
+                <input type="tel" class="input_orange w-input" maxlength="256" name="Contact-Number"
+                    data-name="Contact Number" data-ix="link-hover" placeholder="Contact Number" id="Contact-Number"
+                    >
+                    <div class="message_div" [hidden]="!showContactError" ><div >Please Enter Contact Number</div> </div>
+                <input type="email" class="input_orange w-input" maxlength="256" name="E-Mail" data-name="E-Mail"
+                    data-ix="link-hover" placeholder="E-Mail" id="E-Mail" >
+                    <div class="message_div" [hidden]="!showEmailError"><div >Please Enter Email</div> </div>
+                <div class="drop_holder full">
+                    <div (click)="showCities()" id="Locatio" class="input_orange padding" data-ix="link-hover" style="transition: all 0.2s ease 0s;">
+                        <div class="drop_text">{{Location}}</div>
+                        <div class="drop_arrow"><img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy" sizes="100vw" 
+                             alt="" class="arrow_icon"></div>
+                    </div>
+                    <div class="drop_list_main _3" id="Location">
+                        
+                        <a (click)="selectCity('Location')" class="drop_link line">Location</a>
+                        <a  (click)="selectCity(c)" *ngFor="let c of City; let last = last" [ngClass]="{'drop_link':true, 'line': !last}">{{ c }}</a>
+                    </div>
+                </div>
+                <div class="message_div" [hidden]="!showLocationError"><div >Please Enter Location</div> </div>
+                <div class="checkbox_holder">
+                    <label class="w-checkbox checkbox-field" data-ix="link-hover">
+                        <input type="checkbox" id="FinanceID" name="checkbox-2" data-name="Checkbox 2"
+                            class="w-checkbox-input checkbox" >
+                        <span class="checkbox_text w-form-label">Finance
+                            Required</span></label><label class="w-checkbox checkbox-field-2"
+                        data-ix="link-hover">
+                        <input type="checkbox" id="InsuranceID" name="checkbox" data-name="Checkbox"
+                            class="w-checkbox-input checkbox"><span class="checkbox_text w-form-label">Insurance
+                            Required</span></label><label class="w-checkbox checkbox-field-3"
+                        data-ix="link-hover">
+                        <input type="checkbox" id="TestDriveID" name="checkbox-3"
+                            data-name="Checkbox 3" class="w-checkbox-input checkbox"><span
+                            class="checkbox_text w-form-label">Test Drive Request</span></label>
+                </div>
+                <textarea placeholder="Message" maxlength="5000" id="Message" name="Message" data-name="Message"
+                    class="input_orange_message w-input" data-ix="link-hover"></textarea>
+                    <div class="message_div" [hidden]="!showMessageError"><div >Please Enter Message</div> </div>
+                <a (click)="SendEnquery()" class="nav_link button_veh_main" data-ix="link-hover">Send Enquiry</a>
+            </form> -->
+
+        </div>
+    </div>
+    <div class="body_div_1400_flex">
+        <div class="left_veh_div">
+            <div class="veh_info_top_mobile">
+                <h1 class="heading_veh"> {{vehicleDetail.MAKE}} {{vehicleDetail.MODEL}}</h1>
+                <div class="model_info_main_click">
+                    <div class="year_model">{{vehicleDetail.YEAR}}</div>
+                    <div class="extras_info_text main">{{isNumber(vehicleDetail.MILEAGE)}} km</div>
+                    <div class="extras_info_text main">{{isNumber(vehicleDetail.TRANSMISSION)}}</div>
+                    <div class="extras_info_text main">{{isNumber(vehicleDetail.FUELTYPE)}}</div>
+                    <div class="extras_info_text main">{{isNumber(vehicleDetail.DRIVETYPE)}}</div>
+
+                </div>
+                <div class="price main_veh">R {{isNumber(vehicleDetail.PRICE)}}</div>
+            </div>
+            <div class="page-wrapper"></div>
+            <div class="slider_holder">
+                <div class="no_image_div"></div>
+
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                    <div class="absolute_dealer_logo small" *ngIf="vehicleDetail.LOGO != ''">
+                        <img src="{{vehicleDetail.LOGO}}" loading="lazy" sizes="(max-width: 479px) 26vw, (max-width: 767px) 27vw, (max-width: 991px) 16vw, 15vw" alt="&quot;Dealer Name&quot; Logo" class="dealer_logo small">
+                    </div>
+                    <div class="carousel-inner">
+                        <div *ngFor="let car of vehicleDetail.vehicleImageList; let index =index" id="imageID{{index}}" [ngClass]="{'carousel-item': true, 'active':car.IMAGEANGLE == 'Side view of the vehicle – right hand side', 'mainSlide':true  }">
+                            <img [src]="car.IMAGEPATH" class="veh_image_main mainSlide" alt="Used {{vehicleDetail.YEAR}} {{vehicleDetail.MAKE}} {{vehicleDetail.MODEL}} for Sale in South Africa from {{vehicleDetail.DEALERNAME}}">
+                        </div>
+
+                    </div>
+
+                    <!--   <ng-template #comingsoon>
+                        <img src="https://e-dealerportal.co.za/images/huge.jpg" class="veh_image_main mainSlide" >
+                    </ng-template> -->
+
+
+                    <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon arrows_main_slider_left" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
+                        <span class="carousel-control-next-icon arrows_main_slider_left" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                </div>
+
+
+            </div>
+            <div class="w-embed">
+                <style>
+                    /* Substitute for your own slider class if you prefer */
+                    
+                    .mask_main {
+                        display: flex;
+                    }
+                </style>
+            </div>
+            <div class="thumb_slider w-slider">
+
+                <drag-scroll [scrollbar-hidden]="hideScrollBar" #nav>
+                    <img drag-scroll-item *ngFor="let images of vehicleDetail.vehicleImageList; let index=index" (click)="imageSelected(images.IMAGEPATH,index)" [src]="images.IMAGEPATH" alt="Used {{vehicleDetail.YEAR}} {{vehicleDetail.MAKE}} {{vehicleDetail.MODEL}} for Sale in South Africa from {{vehicleDetail.DEALERNAME}}"
+                        class="vehicle_image" data-ix="link-hover">
+                </drag-scroll>
+                <div (click)="moveLeft()" class="arrow_thumb w-slider-arrow-left" data-ix="link-hover" role="button" tabindex="0" aria-controls="w-slider-mask-1" aria-label="previous slide">
+                    <div class="w-icon-slider-left"></div>
+                </div>
+                <div (click)="moveRight()" class="arrow_thumb w-slider-arrow-right" data-ix="link-hover" role="button" tabindex="0" aria-controls="w-slider-mask-1" aria-label="next slide">
+                    <div class="icon-4 w-icon-slider-right"></div>
+                </div>
+            </div>
+        </div>
+        <div class="right_veh_div">
+
+            <div class="veh_info_top">
+                <h1 class="heading_veh">{{vehicleDetail.MAKE}} {{vehicleDetail.MODEL}}</h1>
+                <div class="model_info_main_click">
+                    <div class="year_model">{{vehicleDetail.YEAR}}</div>
+                    <div class="extras_info_text main">{{isNumber(vehicleDetail.MILEAGE)}} km</div>
+                    <div class="extras_info_text main">{{vehicleDetail.TRANSMISSION}}</div>
+                    <div class="extras_info_text main">{{vehicleDetail.FUELTYPE}}</div>
+                    <!--    <div class="extras_info_text main">{{vehicleDetail.BODY}}</div>
+                    <div class="extras_info_text main">{{vehicleDetail.ENGINECAPACITY}} cc</div>
+                   <div class="extras_info_text main">{{vehicleDetail.DOORS}}</div> -->
+                </div>
+                <div class="price main_veh">R {{isNumber(vehicleDetail.PRICE)}}</div>
+            </div>
+            <div class="finance_div top">
+                <h1 class="accessories_heading">Contact Seller<span class="orange_star"></span></h1>
+                <div class="w-form">
+                    <form id="email-form-3" name="email-form-3" data-name="Email Form 3">
+                        <div class="w-layout-grid grid_contact">
+                            <div>
+                                <input type="text" class="input_orange no_margin w-input" maxlength="256" name="Name-2" data-name="Name 2" data-ix="link-hover" placeholder="Name" id="Name" required="" style="transition: all 0.2s ease 0s;">
+                                <div class="message_div" [hidden]="!showNameError">
+                                    <div>Please Enter Name</div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" class="input_orange no_margin w-input" maxlength="256" name="Surname-2" data-name="Surname 2" data-ix="link-hover" placeholder="Surname" id="Surname" required="" style="transition: all 0.2s ease 0s;">
+                                <div class="message_div" [hidden]="!showSurnameError">
+                                    <div>Please Enter Surname</div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="tel" class="input_orange no_margin w-input" maxlength="256" name="Contact-Number-2" data-name="Contact Number 2" data-ix="link-hover" placeholder="Contact" id="Contact-Number" required="" style="transition: all 0.2s ease 0s;">
+                                <div class="message_div" [hidden]="!showContactError">
+                                    <div>Please Enter Contact Number</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <input type="email" class="input_orange no_margin w-input" maxlength="256" name="E-Mail-2" data-name="E Mail 2" data-ix="link-hover" placeholder="E-Mail" id="E-Mail" required="" style="transition: all 0.2s ease 0s;">
+                                    <div class="message_div" [hidden]="!showEmailError">
+                                        <div>Please Enter E-Mail</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+
+                                <div class="drop_holder full">
+                                    <div (click)="showCities()" id="Locatio" class="input_orange padding" data-ix="link-hover" style="transition: all 0.2s ease 0s;">
+                                        <div class="drop_text">{{Location}}</div>
+                                        <div class="drop_arrow">
+                                            <img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy" sizes="(max-width: 767px) 15px, (max-width: 991px) 2vw, 15px" srcset="assets/images/toppng.com-arrow-down-icon-625x362-p-500.png 500w, assets/images/toppng.com-arrow-down-icon-625x362-p-800.png 800w, images/toppng.com-arrow-down-icon-625x362.png 835w"
+                                                alt="" class="arrow_icon">
+                                        </div>
+
+                                    </div>
+                                    <div class="drop_list_main _3" id="Location">
+                                        <a (click)="selectCity('Location')" class="drop_link line">Location</a>
+                                        <a (click)="selectCity(c)" *ngFor="let c of City; let last = last" [ngClass]="{'drop_link':true, 'line': !last}">{{c}}</a>
+                                    </div>
+                                </div>
+
+                                <div class="message_div" [hidden]="!showLocationError">
+                                    <div>Please Choose Location</div>
+                                </div>
+                            </div>
+                            <div>
+                                <textarea placeholder="Message" maxlength="5000" id="Message" name="Message-2" data-name="Message 2" class="input_orange_message no_margin w-input" data-ix="link-hover" style="transition: all 0.2s ease 0s;"></textarea>
+                                <div class="message_div" [hidden]="!showMessageError">
+                                    <div>Please Enter Message</div>
+                                </div>
+                            </div>
+                            <label class="w-checkbox checkbox-field-2 no_margin" data-ix="link-hover">
+                          <input type="checkbox" id="InsuranceID" name="checkbox-4" data-name="Checkbox 4" class="w-checkbox-input checkbox">
+                        <span class="checkbox_text no_margin w-form-label">Insurance Required</span></label><label class="w-checkbox checkbox-field no_margin" data-ix="link-hover">
+                            <input type="checkbox" id="FinanceID" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input checkbox">
+                            <span class="checkbox_text no_margin w-form-label">Finance Required</span></label>
+                            <div>
+
+                            </div>
+                        </div>
+                        <a (click)="SendEnquery()" class="nav_link button_veh_main" data-ix="link-hover" style="transition: all 0.2s ease 0s;">Send Message</a>
+                    </form>
+
+                </div>
+
+                <a (click)="revelNumber()" [href]="returnHrefNumber ? 'tel:'+numberPhone : 'javascript:void(0)'" class="nav_link number_click" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{numberPhone}}</a>
+                <div class="successful_div" id="successful_div" [hidden]="successfulPopUp">
+                    <h1 class="heading-2">Thank you</h1>
+                    <p>Your enquiry has been successfully sent </p>
+                    <a (click)="closeSuccessfuly()" id="closeSuccessfuly" class="button w-button">Close</a>
+                </div>
+            </div>
+            <div class="finance_div">
+                <h1 class="accessories_heading">Finance Estimate <span class="orange_star">*</span></h1>
+                <div class="fin_calc_wrap">
+                    <h1 class="fin_sub_heading centered">Estimated Instalment<br><span class="smaller_fin">({{Months}} Months,
+                          {{Interest_Rate}}% Interest Rate &amp;  {{Depositpercent}}% Deposit)</span></h1>
+                    <div class="price price_fin">R {{isNumber(Estimated_Instal)}}</div>
+                </div>
+                <div class="fin_form w-form">
+                    <form id="email-form-2" id="calculatorDiv" name="email-form-2" data-name="Email Form 2" class="fin_form">
+                        <div class="w-layout-grid grid-4">
+                            <div class="input_fin_wrap">
+                                <h1 class="fin_sub_heading">Price</h1>
+                                <div class="input_wrap">
+                                    <div class="icon_fin_div">
+                                        <img src="assets/images/tag.png" loading="lazy" alt="" class="icon_fin"></div>
+                                    <input type="text" disabled (keyup)="onKey($event)" class="input_main_fin w-input" maxlength="256" name="Car_Price" data-name="Field 3" id="field-3" [(ngModel)]="Car_Price">
+                                </div>
+                            </div>
+
+                            <div class="input_fin_wrap">
+                                <h1 class="fin_sub_heading">Interest Rate</h1>
+                                <div class="input_wrap">
+                                    <div class="icon_fin_div"><img src="assets/images/percentage.png" loading="lazy" alt="" class="icon_fin"></div>
+                                    <input type="text" (keypress)="numberOnly($event)" class="input_main_fin w-input" maxlength="4" name="Interest_Rate" data-name="Field 3" (keyup)="onKey($event)" id="field-3" [(ngModel)]="Interest_Rate">
+                                </div>
+                            </div>
+                            <div class="input_fin_wrap">
+                                <h1 class="fin_sub_heading">Period</h1>
+                                <div class="input_wrap">
+                                    <div class="icon_fin_div"><img src="assets/images/calendar.png" loading="lazy" alt="" class="icon_fin"></div>
+                                    <div class="drop_holder _100">
+                                        <div (click)="viewMonths()" id="monthDi" class="input_main_fin drop" data-ix="link-hover" style="transition: all 0.2s ease 0s;">
+                                            <div class="drop_text">{{Months}} Months</div>
+                                            <div class="drop_arrow">
+                                                <img src="assets/images/toppng.com-arrow-down-icon-625x362.png" loading="lazy" sizes="100vw" srcset="assets/images/toppng.com-arrow-down-icon-625x362-p-500.png 500w, assets/images/toppng.com-arrow-down-icon-625x362-p-800.png 800w, assets/images/toppng.com-arrow-down-icon-625x362.png 835w"
+                                                    alt="" class="arrow_icon"></div>
+                                        </div>
+                                        <div class="drop_list_main _21" id="monthDiv">
+                                            <a (click)="selectMonths(no)" *ngFor="let no Of months; let last = last" [ngClass]="{'drop_link':true, 'line': !last}">{{no}} Months</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input_fin_wrap">
+                                <h1 class="fin_sub_heading">Deposit</h1>
+                                <div class="input_wrap">
+                                    <div class="icon_fin_div">
+                                        <h1 class="fin_text">R</h1>
+                                    </div>
+                                    <input type="text" (keypress)="DepositnumberOnly($event)" (keyup)="calculatorDeposit($event)" [(ngModel)]="Deposit" class="input_main_fin w-input" maxlength="256" name="Deposit" data-name="Field 3" id="field-3">
+                                </div>
+                            </div>
+                            <div class="input_fin_wrap">
+                                <h1 class="fin_sub_heading">Residual</h1>
+                                <div class="input_wrap">
+                                    <div class="icon_fin_div"><img src="assets/images/percentage.png" loading="lazy" alt="" class="icon_fin"></div>
+                                    <input type="text" class="input_main_fin w-input" (keypress)="numberOnly($event)" (keyup)="calculatorResdifual($event)" [(ngModel)]="Residual_Rate" maxlength="4" name="Residual_Rate" data-name="Field 3" id="field-3">
+                                </div>
+                            </div>
+                            <div class="input_fin_wrap">
+                                <h1 class="fin_sub_heading">Residual Amount</h1>
+                                <div class="input_wrap">
+                                    <div class="icon_fin_div">
+                                        <h1 class="fin_text">R</h1>
+                                    </div>
+                                    <input type="text" disabled (keypress)="isThanCarPrice($event)" (keyup)="calculatorResdifualPercentage()" [(ngModel)]="Residual_Amount" class="input_main_fin w-input" maxlength="256" name="Residual_Amount" data-name="Field 3" id="field-3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fin_calc_div">
+                            <div class="w-layout-grid grid-3">
+                                <div class="fin_calc_wrap">
+                                    <h1 class="fin_sub_heading">Total Interest</h1>
+                                    <div class="price price_fin_small">R {{isNumber(Total_Interest)}}</div>
+                                </div>
+                                <div class="fin_calc_wrap">
+                                    <h1 class="fin_sub_heading">Total Payments</h1>
+                                    <div class="price price_fin_small">R {{isNumber(Total_Payment)}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="calc_link" data-ix="show-calc" id="showCalcula">
+                    <a (click)="showCalculator()" class="fin_calc_1 view_fin_button" data-ix="link-hover">Edit Calculation</a>
+                </div>
+                <div class="calc_link" data-ix="hide-calc" id="hideCalcula">
+                    <a (click)="hideCalculator()" class="fin_calc_2 view_fin_button" data-ix="link-hover">Hide Calculation</a>
+                </div>
+                <p class="terms_text">* Monthly payment estimates are for informational purpose and do not represent a financing offer from the seller of this vehicle.<br></p>
+
+            </div>
+
+            <div class="description_div" *ngIf="vehicleDetail != null">
+                <h1 class="accessories_heading">Description</h1>
+                <p class="description_text" *ngIf="vehicleDetail.DESCRIPTION != ''">{{vehicleDetail.DESCRIPTION}}<br></p>
+                <div class="fin_calc_wrap" *ngIf="vehicleDetail.DESCRIPTION == ''">
+                    <h1 class="fin_sub_heading centered">Description not specified by dealer</h1>
+                </div>
+            </div>
+            <div class="add_info_div" *ngIf="vehicleDetail.VehicleAccessoriesList.length> 0">
+                <h1 class="accessories_heading ">Accessories</h1>
+                <div class="bubble_holder " *ngIf="vehicleDetail.VehicleAccessoriesList.length> 0">
+                    <div class="bubble" *ngFor="let  accessory Of vehicleDetail.VehicleAccessoriesList" data-ix="link-hover">
+                        <a (click)="sortyByAccessories(accessory)">  {{accessory}} </a>
+                    </div>
+                </div>
+                <div class="fin_calc_wrap" *ngIf="vehicleDetail.VehicleAccessoriesList.length == 0">
+                    <h1 class="fin_sub_heading centered">Accessories not specified by dealer</h1>
+                </div>
+            </div>
+            <div class="add_info_div">
+                <h1 class="accessories_heading">General Specification</h1>
+                <div class="specs_container_2">
+                    <div class="w-layout-grid grid-17">
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Intro. Date</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.INTRODATE}}</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Fuel Tank</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.FUELTANKSIZE}} L</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Disc. Date</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.DISCDATE}}</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Axle Config.</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.AXLECONFIGURATION}}</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Body Type</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.BODY}}</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Front Tyre</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.FRONTTYPESIZE}}</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Seats</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.SEATS}}</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Rear Tyre</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.REARTYPESIZE}}</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Transmission</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.TRANSMISSION}}</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Length</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{isNumber(vehicleDetail.LENGTH)}} mm</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Engine Size</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{vehicleDetail.CUBICCAPACITY}} L</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Height</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{isNumber(vehicleDetail.HEIGHT)}} mm</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Power Max.</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{isNumber(vehicleDetail.POWERe)}} KW</div>
+                        </div>
+                        <div class="w-layout-grid grid-18">
+                            <div class="bubble-_white" data-ix="link-hover">Width</div>
+                            <div class="bubble_right" data-ix="link-hover" style="transition: all 0.2s ease 0s;">{{isNumber(vehicleDetail.WIDTH)}} mm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body_div_1400_flex_2">
+        <div class="left_veh_div">
+
+
+        </div>
+        <div class="right_veh_div">
+
+        </div>
+    </div>
+    <div class="banner_ad_space">
+        <a href="{{banner[0].URLS}}" target="_blank">
+            <img src="{{banner[0].ADVERTSPATH}}" loading="lazy" sizes="(max-width: 479px) 92vw, (max-width: 767px) 95vw, (max-width: 991px) 94vw, 91vw" alt="" class="banner_ad">
+        </a>
+    </div>
+
+</div>
+<div class="body_section_grey_padding wf-section" id="SimilarCars">
+    <div class="body_div_1400">
+        <h2 class="sub_heading">Wow These Are Cool!</h2>
+        <div class="heading_with-button_div">
+            <h1 class="page_headings">Similar Cars</h1>
+        </div>
+        <div class="popular_makes_div">
+            <div data-animation="cross" data-duration="1000" data-infinite="1" class="slider_popular w-slider">
+                <div class="w-slider-mask">
+                    <div class="w-slide">
+                        <div class="w-layout-grid grid_top_brands">
+                            <a *ngFor="let similar of SimilarCars.slice(start,end)" (click)="redirectToComponents(similar.VEHICLEID)" class="car_listing slider w-inline-block" data-ix="link-hover">
+                                <div class="image_holder">
+                                    <img [src]="similar.vehicleImage" loading="lazy" alt="" class="car_image_main">
+                                    <div class="absolute_dealer_logo small" *ngIf="similar.LOGO != null && similar.LOGO != 'https://e-dealerportal.co.za'">
+                                        <img src="{{similar.LOGO}}" loading="lazy" sizes="(max-width: 479px) 26vw, (max-width: 991px) 27vw, 231.890625px" alt="Used {{similar.YEAR}} {{similar.MAKE}} {{similar.MODEL}} for Sale in South Africa from {{similar.DEALERNAME}}" class="dealer_logo small">
+                                    </div>
+                                </div>
+                                <div class="div-block-2 small">
+                                    <div class="model_text small">{{similar.MAKE}} {{similar.MODEL}}</div>
+                                    <div class="price small">R {{isNumber(similar.PRICE)}}</div>
+                                    <div class="model_extras small">
+                                        <div class="model_info">
+                                            <div class="year_model small"> {{similar.YEAR}}</div>
+                                            <div class="extras_info_text small">{{isNumber(similar.MILEAGE)}} km</div>
+                                            <div class="extras_info_text small">{{similar.TRANSMISSION}}</div>
+                                            <div class="extras_info_text small">{{similar.FUELTYPE}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <div (click)="moveleft()" class="right-arrow left w-slider-arrow-left" data-ix="link-hover">
+                    <div class="w-icon-slider-left"></div>
+                </div>
+                <div (click)="moveright()" class="right-arrow w-slider-arrow-right" data-ix="link-hover">
+                    <div class="w-icon-slider-right"></div>
+                </div>
+                <div class="slide_nav w-slider-nav w-round"></div>
+            </div>
+        </div>
+    </div>
+</div>

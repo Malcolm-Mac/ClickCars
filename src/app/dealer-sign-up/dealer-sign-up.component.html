@@ -1,0 +1,555 @@
+<div class="landing-page-container_1">
+
+  <div class="nav_section_sub" data-ix="show-mobile-nav">
+    <a (click)="navigatateToLink('home')" class="logo_link w-inline-block" data-ix="link-hover"><img
+        src="assets/images/Click-Car-2.png" loading="lazy" alt="Click Cars Logo" class="image"></a>
+    <a (click)="navigatateToLink('home')" class="nav_link link_sell_car" data-ix="link-hover">Back To Homepage</a>
+  </div>
+
+  <div class="e-dealer_enquiry_form">
+    <img src="assets/images/material-15.png" loading="lazy" alt="" class="close_button_new" data-ix="close-form"
+      (click)="closeEnquiryPopup()">
+    <div class="w-layout-grid form_grids">
+      <div class="form_image"></div>
+      <div class="form_container_outer w-form">
+        <form id="email-form-4" name="email-form-4" data-name="Email Form 4" class="form_container_inner">
+          <div class="sub_heading_e-dealer_text no-margin">Enquire Now</div>
+          <p class="paragraph_no_max">Kindly complete the form and we&#x27;ll be in touch.</p>
+          <div class="form_holder">
+            <div class="w-layout-grid grid-10">
+
+              <div class="field_holder">
+                <p class="field_text">Name</p>
+                <input type="text" onkeypress="return /[A-Za-z ]/i.test(event.key)" class="text-field-2 w-input"
+                  maxlength="256" name="field-5" data-name="Field 5" placeholder="" id="Name">
+                <div class="message_div" [hidden]="!showNameError">
+                  <div>Please Enter Name</div>
+                </div>
+              </div>
+
+              <div class="field_holder">
+                <p class="field_text">Surname</p>
+                <input type="text" onkeypress="return /[A-Za-z ]/i.test(event.key)" class="text-field-2 w-input"
+                  maxlength="256" name="field-5" data-name="Field 5" placeholder="" id="Surname">
+                <div class="message_div" [hidden]="!showSurnameError">
+                  <div>Please Enter Surname</div>
+                </div>
+              </div>
+
+              <div class="field_holder">
+                <p class="field_text">Business Name</p>
+                <input type="text" onkeypress="return /[A-Za-z ]/i.test(event.key)" class="text-field-2 w-input"
+                  maxlength="256" name="field-5" data-name="Field 5" placeholder="" id="BusinessName">
+                <div class="message_div" [hidden]="!showBusinessNameError">
+                  <div>Please Enter Business Name</div>
+                </div>
+              </div>
+
+              <div class="field_holder">
+                <p class="field_text">Position </p>
+                <input type="text" onkeypress="return /[A-Za-z ]/i.test(event.key)" class="text-field-2 w-input"
+                  maxlength="256" name="field-5" data-name="Field 5" placeholder="" id="Position">
+                <div class="message_div" [hidden]="!showBusinessNameError">
+                  <div>Please Enter Business Name</div>
+                </div>
+              </div>
+
+              <div class="field_holder">
+                <p class="field_text">Location</p>
+                <select id="Locations" name="field-7" data-name="Field 7" class="text-field-2 w-select">
+                  <option value="" selected>Please Select Location</option>
+                  <option value="Gauteng">Gauteng</option>
+                  <option value="Mpumalanga">Mpumalanga</option>
+                  <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                  <option value="Limpopo">Limpopo</option>
+                  <option value="Free State">Free State</option>
+                  <option value="Eastern Cape">Eastern Cape</option>
+                  <option value="Northern Cape">Northern Cape</option>
+                  <option value="North West">North West</option>
+                  <option value="Western Cape">Western Cape</option>
+                </select>
+                <div class="message_div" [hidden]="!showLocationError">
+                  <div>Please Select Location</div>
+                </div>
+              </div>
+
+              <div class="field_holder">
+                <p class="field_text">E-Mail</p>
+                <input type="email" onkeypress="return /[0-9a-zA-Z(). -?''+@]/i.test(event.key)"
+                  class="text-field-2 w-input" maxlength="256" name="field-5" data-name="Field 5" placeholder=""
+                  id="Mail">
+                <div class="message_div" [hidden]="!showEmailError">
+                  <div>Please Enter E-Mail</div>
+                </div>
+              </div>
+
+              <div class="field_holder">
+                <p class="field_text">Contact No.</p>
+                <input type="text" onkeypress="return /[0-9]/i.test(event.key)" class="text-field-2 w-input"
+                  maxlength="256" name="field-5" data-name="Field 5" placeholder="" id="ContactNumber">
+                <div class="message_div" [hidden]="!showContactError">
+                  <div>Please Enter Contact Number</div>
+                </div>
+              </div>
+
+              <div id="w-node-f676a9db-7f1f-fb7b-dd1f-645a00e0b711-31bda05a" class="field_holder">
+                <p class="field_text">Message</p>
+                <textarea onkeypress="return /[A-Za-z0-9 ]/i.test(event.key)" placeholder="" maxlength="5000"
+                  id="Message" name="field-6" data-name="field" class="text-field-2 w-input"></textarea>
+                <div class="message_div" [hidden]="!showMessageError">
+                  <div>Please Enter Message</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <a (click)="sendDealerSignUp()" class="main_button_portal w-button">Send</a>
+          <div class="successful_div_landing_page" data-ix="hide-enquiry" id="successful_div">
+            <h1 class="heading-3">Thank you</h1>
+            <p>Your details has been Submited, E-Dealer Portal Team will contact you shorly.</p>
+            <a (click)="done()" class="button_red w-button">Close</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="e-dealer_landing_page">
+    <div class="body_section_white_details_background_image_1 wf-section">
+      <div id="enquiry_form" class="enquiry_form">
+        <div class="icon_back w-icon-slider-right" data-ix="hide-enquiry"></div>
+        <h1 class="enquiry_heading"><span class="wrap_enquire">Send Enquiry</span> 2016 Toyota Hilux D4-D 6.2 V8 Turbo
+          Car</h1>
+        <div class="w-form">
+          <form id="email-form-3" name="email-form-3" data-name="Email Form 3"><input type="text"
+              class="input_orange w-input" maxlength="256" name="Name" data-name="Name" data-ix="link-hover"
+              placeholder="Name" id="Name" required=""><input type="text" class="input_orange w-input" maxlength="256"
+              name="Surname" data-name="Surname" data-ix="link-hover" placeholder="Surname" id="Surname"
+              required=""><input type="tel" class="input_orange w-input" maxlength="256" name="Contact-Number"
+              data-name="Contact Number" data-ix="link-hover" placeholder="Contact Number" id="Contact-Number"
+              required=""><input type="email" class="input_orange w-input" maxlength="256" name="E-Mail"
+              data-name="E-Mail" data-ix="link-hover" placeholder="E-Mail" id="E-Mail" required="">
+            <div class="checkbox_holder"><label class="w-checkbox checkbox-field" data-ix="link-hover"><input
+                  type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
+                  class="w-checkbox-input checkbox"><span class="checkbox_text w-form-label" for="checkbox-2">Finance
+                  Required</span></label><label class="w-checkbox checkbox-field-2" data-ix="link-hover"><input
+                  type="checkbox" id="checkbox" name="checkbox" data-name="Checkbox"
+                  class="w-checkbox-input checkbox"><span class="checkbox_text w-form-label" for="checkbox">Insurance
+                  Required</span></label><label class="w-checkbox checkbox-field-3" data-ix="link-hover"><input
+                  type="checkbox" id="checkbox-3" name="checkbox-3" data-name="Checkbox 3"
+                  class="w-checkbox-input checkbox"><span class="checkbox_text w-form-label" for="checkbox-3">Test Drive
+                  Request</span></label></div><textarea class="input_orange_message w-input" maxlength="5000"
+              name="Message" data-name="Message" data-ix="link-hover" placeholder="Message" id="Message"></textarea>
+            <a href="#" class="nav_link button_veh_main" data-ix="link-hover">Send Enquiry</a>
+          </form>
+        </div>
+      </div>
+      <div class="body_div_1400_flex2-centered"></div>
+      <div class="partnership_div">
+        <h1 class="e-dealer_text"><span class="web_colour">Click Cars</span> in Partnership With e-Dealer Portal</h1>
+        <div class="sub_heading_e-dealer_text">Buy and Sell More Cars With The Ultimate Automotive Software Solution.
+          <br>
+        </div>
+        <div class="logos-holder">
+          <img src="assets/images/256.jpg" loading="lazy" alt="" class="affiliate-logo">
+          <img src="assets/images/e-Dealer-Blue.png" loading="lazy" sizes="100vw"
+            srcset="assets/images/e-Dealer-Blue-p-500.png 500w, assets/images/e-Dealer-Blue-p-800.png 800w, assets/images/e-Dealer-Blue-p-1080.png 1080w, assets/images/e-Dealer-Blue-p-1600.png 1600w, assets/images/e-Dealer-Blue.png 2111w"
+            alt="" class="affiliate-logo last">
+        </div>
+      </div>
+      <div class="image_block"><img src="assets/images/Stats_screenspng.png" loading="lazy"
+          sizes="(max-width: 479px) 87vw, (max-width: 767px) 386.1875px, (max-width: 991px) 463.4375px, (max-width: 1439px) 741.5px, 648.8125px"
+          srcset="assets/images/Stats_screenspng-p-500.png 500w, assets/images/Stats_screenspng-p-800.png 800w, assets/images/Stats_screenspng-p-1080.png 1080w, assets/images/Stats_screenspng.png 1500w"
+          alt="" class="pc_image"><img src="assets/images/Silver-E-dealer-Portal-02.png" loading="lazy"
+          sizes="(max-width: 479px) 60vw, (max-width: 767px) 130px, (max-width: 991px) 195px, 221px"
+          srcset="assets/images/Silver-E-dealer-Portal-02-p-500.png 500w, assets/images/Silver-E-dealer-Portal-02-p-800.png 800w, assets/images/Silver-E-dealer-Portal-02-p-1080.png 1080w, assets/images/Silver-E-dealer-Portal-02-p-1600.png 1600w, assets/images/Silver-E-dealer-Portal-02.png 2093w"
+          alt="" class="logo_image"></div>
+      <div class="advertising_holder"></div>
+      <div class="advertising_holder">
+        <div class="sub_heading_e-dealer_text big">Includes The Following Advertising Platforms</div>
+        <div class="advertising_block">
+          <div class="w-layout-grid logos_grid">
+            <a href="http://www.clickcars.co.za" target="_blank" class="affiliate_block click w-inline-block"><img
+                src="assets/images/Click-Car-2.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a href="http://www.cars2sell.co.za" target="_blank" class="affiliate_block cars w-inline-block"><img
+                src="assets/images/Cars2sell-Logo-01.png" loading="lazy"
+                sizes="(max-width: 479px) 80vw, (max-width: 767px) 87vw, (max-width: 991px) 88vw, (max-width: 1439px) 94vw, 942px"
+                srcset="assets/images/Cars2sell-Logo-01-p-500.png 500w, assets/images/Cars2sell-Logo-01-p-800.png 800w, assets/images/Cars2sell-Logo-01-p-1080.png 1080w, assets/images/Cars2sell-Logo-01-p-1600.png 1600w, assets/images/Cars2sell-Logo-01-p-2000.png 2000w, assets/images/Cars2sell-Logo-01-p-2600.png 2600w, assets/images/Cars2sell-Logo-01-p-3200.png 3200w, assets/images/Cars2sell-Logo-01.png 6669w"
+                alt="" class="full_stretch-image"></a>
+            <a href="https://zambezicars.co.za/" target="_blank" class="affiliate_block w-inline-block"><img
+                src="assets/images/Zam.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a href="https://bakkie2buy.co.za/" target="_blank" class="affiliate_block bakkie w-inline-block"><img
+                src="assets/images/bakkie-logo-white-01-01-01-p-500.png" loading="lazy" alt=""
+                class="full_stretch-image small"></a>
+            <a href="https://www.premiummobility.co.za/" target="_blank"
+              class="affiliate_block premium w-inline-block"><img src="assets/images/Premium.png" loading="lazy" alt=""
+                class="full_stretch-image"></a>
+            <a href="https://www.vehiclesellers.co.za/" target="_blank" class="affiliate_block w-inline-block"><img
+                src="assets/images/VS.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a href="https://cafewheels.co.za/" target="_blank" class="affiliate_block w-inline-block"><img
+                src="assets/images/Cafe-Wheels.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a href="https://mobility-online.co.za/" target="_blank" class="affiliate_block w-inline-block"><img
+                src="assets/images/MOB.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a href="https://e-mobility-online.co.za/" target="_blank" class="affiliate_block w-inline-block"><img
+                src="assets/images/eM.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a id="w-node-_7711732a-ee25-41b9-d2d9-9c4efee7afff-31bda05a" href="https://tradeyourvehicle.co.za/"
+              target="_blank" class="affiliate_block w-inline-block"><img src="assets/images/Trade_.png" loading="lazy"
+                alt="" class="full_stretch-image"></a>
+            <a href="https://valuevehicle.co.za/" target="_blank" class="affiliate_block w-inline-block"><img
+                src="assets/images/VV.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a id="w-node-_6616f3a1-2287-457f-9584-cce859267134-31bda05a" href="https://www.urbanvehicle.co.za/"
+              target="_blank" class="affiliate_block urban w-inline-block"><img
+                src="assets/images/UBV-logo-thicker-01.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a href="https://vehiclemax.co.za/" target="_blank" class="affiliate_block max w-inline-block"><img
+                src="assets/images/VEHICLE-MAX.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <div id="w-node-_3968125e-6708-29aa-b332-b0b4010f0ad2-31bda05a" class="affiliate_block"><img
+                src="assets/images/Untitled-design-8.png" loading="lazy" alt="" class="full_stretch-image"></div>
+            <a href="https://e-vehiclemobility.com/" target="_blank" class="affiliate_block w-inline-block"><img
+                src="assets/images/EVM-logo-01.png" loading="lazy" alt="" class="full_stretch-image"></a>
+            <a href="#" class="affiliate_block w-inline-block"><img src="assets/images/Veh-Bill.png" loading="lazy"
+                alt="" class="full_stretch-image"></a>
+          </div>
+        </div>
+      </div>
+      <div class="sub_heading_e-dealer_text big">Advertising Benefits</div>
+      <div class="w-layout-grid grid-6">
+        <div class="stats_div">
+          <div class="heading_stat"><strong class="bold-text-4">1.81 Average Leads p/Vehicle</strong></div>
+          <p class="paragraph-3">On average the e-Dealer Portal Advertising Suite of Platforms generates 1.81 leads
+            p/vehicle every month.</p>
+        </div>
+        <div class="stats_div">
+          <div class="heading_stat"><strong class="bold-text-5">23% Increase in Sales</strong></div>
+          <p class="paragraph-3">Our Dealers using our Advertising Solution in combination with our CX Portal - CRM
+            Software have recorded an average increase on 23% in sales (Month 1)</p>
+        </div>
+        <div class="stats_div">
+          <div class="heading_stat"><strong>Reach Your Customer</strong></div>
+          <p class="paragraph-3">Each Advertising Platform is targeted to unique target markets - making sure your stock
+            reaches the right customers.</p>
+        </div>
+        <div class="stats_div">
+          <div class="heading_stat"><strong>Expose Your Stock</strong></div>
+          <p class="paragraph-3">With over 400 000 vehicle views p/month across our advertising platforms we can ensure
+            your stock and brand gets the exposure they need.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="blue_bkg">
+      <div class="rate_card_div">
+        <div class="sub_heading_e-dealer_text white left">e-Dealer Portal Advertising Rate Card</div>
+        <div class="w-layout-grid grid-7">
+          <div class="table_heading">
+            <div class="text-block-6">Vehicles</div>
+          </div>
+          <div class="table_heading">
+            <div class="text-block-5">1 Month</div>
+          </div>
+          <div class="table_heading">
+            <div class="text-block-2">3 Months</div>
+            <div class="savings_tag">8% Saving</div>
+          </div>
+          <div class="table_heading">
+            <div class="text-block-3">6 Months</div>
+            <div class="savings_tag">10% Saving</div>
+          </div>
+          <div class="table_heading">
+            <div class="text-block-4">12 Months</div>
+            <div class="savings_tag">12% Saving</div>
+          </div>
+          <div id="w-node-_12af64f2-c587-19ee-cb10-56841d5fea9e-31bda05a" class="table_body">
+            <div class="text-block-7">20</div>
+          </div>
+          <div id="w-node-_62dea131-6bcb-a5fd-5fab-277b382ce154-31bda05a" class="table_body">
+            <div>R 3 950</div>
+          </div>
+          <div class="table_body">
+            <div>R 10 950<br><span class="p-m_tag"><strong>(R 3 650 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 21 300<br><span class="p-m_tag"><strong>(R 3 550 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 41 400<br><span class="p-m_tag"><strong>(R 3 450 p/m)</strong></span></div>
+          </div>
+          <div id="w-node-_56168a51-dcce-7d22-356c-5d46f816d201-31bda05a" class="table_body">
+            <div>30</div>
+          </div>
+          <div id="w-node-_1002f2f7-6141-5ada-7136-19f06962f9c0-31bda05a" class="table_body">
+            <div>R 5 950</div>
+          </div>
+          <div class="table_body">
+            <div>R 16 500<br><span class="p-m_tag"><strong>(R 5 500 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 32 100<br><span class="p-m_tag"><strong>(R 5 350 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 63 000<br><span class="p-m_tag"><strong>(R 5 250 p/m)</strong></span></div>
+          </div>
+          <div id="w-node-e43c2c25-8165-ba1f-015e-fb480631d38f-31bda05a" class="table_body">
+            <div>60</div>
+          </div>
+          <div id="w-node-_2ad62edf-3110-8dbe-735a-07337309ed5b-31bda05a" class="table_body">
+            <div>R 9 250</div>
+          </div>
+          <div class="table_body">
+            <div>R 25 500<br><span class="p-m_tag"><strong>(R 8 500 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 50 100<br><span class="p-m_tag"><strong>(R 8 350 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 97 800<br><span class="p-m_tag"><strong>(R 8 150 p/m)</strong></span></div>
+          </div>
+          <div id="w-node-_8e40aa3f-6a3a-e972-e9cb-6e18503970cc-31bda05a" class="table_body">
+            <div>100</div>
+          </div>
+          <div id="w-node-_05f586d9-e631-fab4-6804-7111791fee55-31bda05a" class="table_body">
+            <div>R 15 750</div>
+          </div>
+          <div class="table_body">
+            <div>R 43 500<br><span class="p-m_tag"><strong>(R 14 500 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 84 900<br><span class="p-m_tag"><strong>(R 14 150 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 165 600<br><span class="p-m_tag"><strong>(R 13 800 p/m)</strong></span></div>
+          </div>
+          <div id="w-node-_7b83a50c-13d7-f411-32cb-1cc088b990eb-31bda05a" class="table_body">
+            <div>200</div>
+          </div>
+          <div id="w-node-_892840c6-4204-04e1-2c48-2ad3514d89be-31bda05a" class="table_body">
+            <div>R 35 550</div>
+          </div>
+          <div class="table_body">
+            <div>R 98 250<br><span class="p-m_tag"><strong>(R 32 750 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 192 000<br><span class="p-m_tag"><strong>(R 32 000 p/m)</strong></span></div>
+          </div>
+          <div class="table_body">
+            <div>R 375 000<br><span class="p-m_tag"><strong>(R 31 250 p/m)</strong></span></div>
+          </div>
+        </div>
+        <div class="sub_heading_e-dealer_text white left smaller">
+          3rd Party Vehicle Feeds Available To Multiple
+          Advertising Providers</div>
+        <div class="sub_heading_e-dealer_text white left smaller_2">
+          Save Time &amp; Load Your Vehicle Once Across
+          Multiple Advertising Channels</div>
+        <div class="vehicle-feeds">
+          <!-- <div class="feeds_logo">
+            <div class="w-layout-grid grid-11"><img src="assets/images/cars.co.za2.png" loading="lazy" alt=""
+                class="image-6"><img src="assets/images/auto-mart2.png" loading="lazy" alt="" class="image-6"><img
+                src="assets/images/Car-find.png" loading="lazy"
+                id="w-node-_826a1288-ea4f-a2fc-b0ca-1aa3f1c35d15-31bda05a" alt="" class="image-6"><img
+                src="assets/images/gumtree2.png" loading="lazy" alt="" class="image-6"></div>
+          </div> -->
+          <a (click)="showEnquiryPopup()" class="main_button_portal w-button">Enquire Now</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="body_section_white_details_background_image_1 wf-section">
+      <div class="sub_heading_e-dealer_text big">e-Dealer Portal Benefits</div>
+      <div class="w-layout-grid _2-grid_layout">
+        <div class="w-layout-grid _2-grid_layout-points">
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div><strong>360° Automotive Solutions</strong></div>
+              <p class="paragraph-3">Our 1 Platform - 1 Solution provides you with all the tools necessary to manage
+                your Stock, Advertising and Customers on a daily basis.</p>
+            </div>
+          </div>
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div>
+                <strong>Proudly South African</strong>
+              </div>
+              <p class="paragraph-3">Our completely in-house built software means regular updates and anytime support
+                for all our dealers.</p>
+            </div>
+          </div>
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div>
+                <strong>Vehicle Advertising </strong>
+              </div>
+              <p class="paragraph-3">Advertise your stock across 20 platforms, each with their own target market. Our
+                unique single vehicle strategy and algorithms allow us to reach your customer at the right time in the
+                buying cycle.</p>
+            </div>
+          </div>
+          <div id="w-node-_27fd145f-6bfc-83fa-3128-b5860e623f25-31bda05a" class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" width="30" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div><strong>CX Portal - CRM</strong></div>
+              <p class="paragraph-3">Manage all your leads from different sources in one location. Multiple allocation
+                methods allow your team to make contact with customers in the shortest time possible.</p>
+            </div>
+          </div>
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div><strong>Stock Management </strong></div>
+              <p class="paragraph-3">Manage your stock and advertising from one central dashboard. Added features
+                include: Unlimited Cloud Storage for vehicle documents, Showroom Documents &amp; Automated Background
+                Removal.</p>
+            </div>
+          </div>
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div>
+                <strong>Trade &amp; Retail Lookups / Vehicle History Reports</strong>
+              </div>
+              <p class="paragraph-3">Get accurate values for your vehicles through our Trade &amp; Retail Lookup system.
+                Full Vehicle Accident, Finance and Stolen History Reports Available.</p>
+            </div>
+          </div>
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div>
+                <strong>Trade Stock / Wholesale Platform</strong>
+              </div>
+              <p class="paragraph-3">Bid on Prime Stock from other dealers and private sellers.</p>
+            </div>
+          </div>
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div>
+                <strong>HR &amp; Training Solutions </strong>
+              </div>
+              <p class="paragraph-3">MERSETA Approved Artisan Training Material for Diesel, Motor and Motorcycle
+                Mechanic. HR Solutions Suite also available.</p>
+            </div>
+          </div>
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div>
+                <strong class="hidden">Accounting (Coming Soon)</strong>
+              </div>
+              <p class="paragraph-3 hidden">Whilst working on our own solution we can integrate with your current
+                Accounting Software.</p>
+            </div>
+          </div>
+          <div class="benefit_container">
+            <div class="icon_bullet">
+              <img src="assets/images/material-13.png" loading="lazy" alt="" class="bullet-icon">
+            </div>
+            <div class="benefit_point">
+              <div>
+                <strong class="hidden">Parts Management (Coming Soon)</strong>
+              </div>
+              <p class="paragraph-3 hidden">Whilst working on our own solution we can integrate with your current Parts
+                Management Software.</p>
+            </div>
+          </div>
+        </div>
+        <div id="w-node-_27fd145f-6bfc-83fa-3128-b5860e623f65-31bda05a" class="cx-holder"><img
+            src="assets/images/Silver-E-dealer-Portal-Cropped_1.png" loading="lazy"
+            sizes="(max-width: 479px) 49vw, (max-width: 767px) 90.375px, (max-width: 991px) 101.671875px, 135.5625px"
+            srcset="assets/images/Silver-E-dealer-Portal-Cropped_1-p-500.png 500w, assets/images/Silver-E-dealer-Portal-Cropped_1-p-800.png 800w, assets/images/Silver-E-dealer-Portal-Cropped_1-p-1080.png 1080w, assets/images/Silver-E-dealer-Portal-Cropped_1.png 2176w"
+            alt="" class="cx_logo">
+          <div class="cx-info">
+            <div class="benefit_point headings">
+              <strong>Work Smarter Not Harder</strong>
+            </div>
+            <div class="benefit_container">
+              <div class="icon_bullet">
+                <img src="assets/images/material-13.png" loading="lazy" width="30" alt="" class="bullet-icon">
+              </div>
+              <div class="benefit_point white">
+                <div>Lead Management </div>
+              </div>
+            </div>
+            <div class="benefit_container">
+              <div class="icon_bullet">
+                <img src="assets/images/material-13.png" loading="lazy" width="30" alt="" class="bullet-icon">
+              </div>
+              <div class="benefit_point white">
+                <div>Appointment Based Solutions</div>
+              </div>
+            </div>
+            <div class="benefit_container">
+              <div class="icon_bullet">
+                <img src="assets/images/material-13.png" loading="lazy" width="30" alt="" class="bullet-icon">
+              </div>
+              <div class="benefit_point white">
+                <div>Automated Customer Communication</div>
+              </div>
+            </div>
+            <div class="benefit_container">
+              <div class="icon_bullet">
+                <img src="assets/images/material-13.png" loading="lazy" width="30" alt="" class="bullet-icon">
+              </div>
+              <div class="benefit_point white">
+                <div>Automated Deal Builder</div>
+              </div>
+            </div>
+            <div class="benefit_container">
+              <div class="icon_bullet">
+                <img src="assets/images/material-13.png" loading="lazy" width="30" alt="" class="bullet-icon">
+              </div>
+              <div class="benefit_point white">
+                <div>Lead Pool Access</div>
+              </div>
+            </div>
+            <div class="benefit_container">
+              <div class="icon_bullet">
+                <img src="assets/images/material-13.png" loading="lazy" width="30" alt="" class="bullet-icon">
+              </div>
+              <div class="benefit_point white">
+                <div>Marketing Campaign Builder</div>
+              </div>
+            </div>
+            <div class="benefit_container">
+              <div class="icon_bullet">
+                <img src="assets/images/material-13.png" loading="lazy" width="30" alt="" class="bullet-icon">
+              </div>
+              <div class="benefit_point white">
+                <div>Full Reporting</div>
+              </div>
+            </div>
+          </div>
+          <img src="assets/images/Dealer-Dash-p-500.png" loading="lazy" alt="" class="image-92">
+          <a href="https://e-dealerportal.co.za/" target="_blank" class="main_button_portal outline w-button">Find Out
+            More</a>
+        </div>
+      </div>
+      <a (click)="showEnquiryPopup()" class="main_button_portal w-button">Join Now</a>
+    </div>
+
+  </div>
+
+</div>

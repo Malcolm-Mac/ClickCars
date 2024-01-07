@@ -1,0 +1,102 @@
+<div class="footer_section wf-section">
+  <div class="footer_container">
+    <div class="footer_div_flex_main">
+      <div class="footer_flex_left">
+        <div class="footer_logo_div">
+          <a routerLink="/" routerLinkActive="w--current" [routerLinkActiveOptions]="{exact: true}"
+            class="logo_link w-inline-block" data-ix="link-hover">
+            <img src="assets/images/Click-Car-2.png" loading="lazy" alt="Click Cars Logo" class="image"
+              data-ix="link-hover">
+          </a>
+          <p class="paragraph footer">Click A Car on the Go!</p>
+        </div>
+        <div class="sitemap_div">
+          <div class="w-layout-grid sitemap_grid">
+            <ul role="list" class="sitemap_list">
+              <li class="sitemap_list_item">
+                <a routerLink="/" routerLinkActive="w--current" [routerLinkActiveOptions]="{exact: true}"
+                  aria-current="page" class="link_sitemap" data-ix="link-hover">Home</a>
+              </li>
+            </ul>
+            <ul role="list" class="sitemap_list">
+              <li class="sitemap_list_item">
+                <a routerLink="/cars" routerLinkActive="w--current" class="link_sitemap"
+                  data-ix="link-hover">Listings</a>
+              </li>
+            </ul>
+            <ul role="list" class="sitemap_list">
+              <li class="sitemap_list_item">
+                <a href="http://driftza.co.za/" target="_blank" class="link_sitemap"
+                  data-ix="link-hover">Value My Car</a>
+              </li>
+            </ul>
+            <ul role="list" class="sitemap_list">
+              <li class="sitemap_list_item">
+                <a routerLink="/finance-calculator" routerLinkActive="w--current" class="link_sitemap"
+                  data-ix="link-hover">Finance Calculator</a>
+              </li>
+            </ul>
+            <ul role="list" class="sitemap_list">
+              <li class="sitemap_list_item">
+                <a routerLink="/who-we-are" routerLinkActive="w--current" class="link_sitemap" data-ix="link-hover">Who
+                  We Are</a>
+              </li>
+            </ul>
+            <ul role="list" class="sitemap_list">
+              <li class="sitemap_list_item">
+                <a routerLink="/faq" routerLinkActive="w--current" class="link_sitemap" data-ix="link-hover">FAQ</a>
+              </li>
+            </ul>
+            <ul role="list" class="sitemap_list">
+              <li class="sitemap_list_item">
+                <a href="https://www.autoblog.co.za/" target="_blank" class="link_sitemap" data-ix="link-hover">Blog</a>
+              </li>
+            </ul>
+            <ul role="list" class="sitemap_list">
+              <li class="sitemap_list_item">
+                <a routerLink="/contact-us" routerLinkActive="w--current" class="link_sitemap"
+                  data-ix="link-hover">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer_flex_right">
+        <div class="footer_right_div">
+          <h1 class="page_headings footer_number">
+            <a href="tel:+27871356082" class="number_link" data-ix="link-hover">087 <span class="orange_span">135
+                6082</span></a>
+          </h1>
+          <a href="mailto:info@e-dealerportal.co.za?subject=Website%20Enquiry" class="footer_email"
+            data-ix="link-hover">info@e-dealerportal.co.za</a>
+          <a routerLink="/dealer-sign-up" class="footer_dealer" data-ix="link-hover">Dealership Sign Up</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer_bottom">
+      <div class="disc_div">
+        <a href="https://e-dealerportal.co.za/assets/Affiliate%20Terms%20&amp;%20Conditions.pdf" target="_blank"
+          class="disc_links">Terms &amp; Conditions</a>
+        <a href="https://e-dealerportal.co.za/assets/Website-Privacy%20E-Dealer%20Portal%20SA.pdf" target="_blank"
+          class="disc_links">Privacy Policy</a>
+        <a href="https://e-dealerportal.co.za/assets/Take-Down%20Notice%20Requirement.pdf" target="_blank"
+          class="disc_links">TDN Policy</a>
+        <a href="https://e-dealerportal.co.za/assets/Acceptable%20Use%20Policy.pdf" target="_blank"
+          class="disc_links">Acceptable Use Policy</a>
+        <a href="https://e-dealerportal.co.za/assets/Fair%20Use%20Policy.pdf" target="_blank" class="disc_links">Fair
+          Use Policy</a>
+      </div>
+      <div class="paragraph white no_width">Copyright © {{year}} <a href="http://www.clickcars.co.za" class="footer_link"
+          data-ix="link-hover">ClickCarsSA (Pty) Ltd. t/a Click Cars</a><br>All Rights Reserved. Trademark ®  Pending
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dealer_sign_up_div" [@hideDealer]="isOpen ? 'show' : 'hide'" *ngIf="_routerss.url != '/dealer-sign-up'">
+  <h1 class="sub_heading white">Advertise Your Stock</h1>
+  <h1 class="page_headings orange">Dealer Sign-Up<br></h1>
+  <a routerLink="/dealer-sign-up" class="nav_link link_sell button_sign_up w-button">Sign-Up Now</a>
+  <a (click)="hideDealerSignUp()" class="link-block w-inline-block" data-ix="link-hover"><img
+      src="assets/images/hamburger-1.png" loading="lazy" alt="" class="image-5"></a>
+</div>
